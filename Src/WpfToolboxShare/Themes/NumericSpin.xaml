@@ -1,0 +1,172 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+    xmlns:c="clr-namespace:WpfToolbox.Controls">
+
+    <!--
+    <Geometry x:Key="UpArrowGeometry">M0,5 L4.5,.5 9,5 6,5 4.5,3.5 3,5 z</Geometry>
+    <Geometry x:Key="DownArrowGeometry">M0,0 L3,0 4.5,1.5 6,0 9,0 4.5,4.5 z</Geometry>
+
+    <SolidColorBrush options:Freeze="true" x:Key="GlyphNormalForegroundKey" Color="#FF000000" />
+    <SolidColorBrush options:Freeze="true" x:Key="GlyphDisabledForegroundKey" Color="#FFA9A9A9" />
+
+    <DataTemplate x:Key="IncreaseGlyphNormalKeyX">
+        <Path Width="9"
+         Height="5"
+         Data="{StaticResource UpArrowGeometry}"
+         Fill="{StaticResource GlyphNormalForegroundKey}"
+         SnapsToDevicePixels="True"
+         HorizontalAlignment="Center"
+         VerticalAlignment="Center"
+         Focusable="False" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="IncreaseGlyphDisabledKeyX">
+        <Path
+         Width="9"
+         Height="5"
+         Data="{StaticResource UpArrowGeometry}"
+         Fill="{StaticResource GlyphDisabledForegroundKey}"
+         SnapsToDevicePixels="True"
+         HorizontalAlignment="Center"
+         VerticalAlignment="Center"
+         Focusable="False" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="DecreaseGlyphNormalKeyX">
+        <Path Width="9"
+         Height="5"
+         Data="{StaticResource DownArrowGeometry}"
+         Fill="{StaticResource GlyphNormalForegroundKey}"
+         SnapsToDevicePixels="True"
+         HorizontalAlignment="Center"
+         VerticalAlignment="Center"
+         Focusable="False" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="DecreaseGlyphDisabledKeyX">
+        <Path	Width="9"
+         Height="5"
+         Data="{StaticResource DownArrowGeometry}"
+         Fill="{StaticResource GlyphDisabledForegroundKey}"
+         SnapsToDevicePixels="True"
+         HorizontalAlignment="Center"
+         VerticalAlignment="Center"
+         Focusable="False" />
+    </DataTemplate>
+
+    <Style x:Key="IncDecRepeatButton" TargetType="{x:Type RepeatButton}">
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="#FFADADAD"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ButtonBase}">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    Margin="{TemplateBinding Padding}" 
+                                    RecognizesAccessKey="True" 
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="NumericSpin" TargetType="{x:Type Control}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Control">
+                    <Border x:Name="Border"
+                     SnapsToDevicePixels="True"
+                     Background="{TemplateBinding Background}"
+                     BorderBrush="{TemplateBinding BorderBrush}"
+                     BorderThickness="{TemplateBinding BorderThickness}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox 
+                         Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}"                            
+                         Width="{Binding TextWidth, RelativeSource={RelativeSource TemplatedParent}}"                                
+                         HorizontalAlignment="Right" />
+                            <StackPanel Orientation="Vertical">
+                                <RepeatButton x:Name="incRepeatButton" Style="{StaticResource IncDecRepeatButton}" ContentTemplate="{StaticResource IncreaseGlyphNormalKeyX}"/>
+                                <RepeatButton x:Name="decRepeatButton" Style="{StaticResource IncDecRepeatButton}" ContentTemplate="{StaticResource DecreaseGlyphNormalKeyX}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    -->
+
+    <DrawingBrush x:Key="brushScrollDown" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M 24,26.75L 14,16.75L 14,23.5L 24,34L 34,23.5L 34,16.75L 24,26.75 Z " />
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="brushScrollUp" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M 24,21.25L 34,31.25L 34,24.5L 24,14L 14,24.5L 14,31.25L 24,21.25 Z " />
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+
+    <Style x:Key="NumericSpinX" TargetType="{x:Type Control}">
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="0.8"/>
+        <Setter Property="Height" Value="18.0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Control">
+                    <Grid Background="{Binding Path=Background, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Row="0" Grid.Column="0" Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <Grid x:Name="grid1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                               <RowDefinition Height="Auto" />
+                               <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <RepeatButton x:Name="incRepeatButton" Grid.Row="0" Grid.Column="1" Width="22" Height="9">
+                                <Rectangle Width="16" Height="5" Fill="{StaticResource brushScrollUp}" />
+                            </RepeatButton>
+                            <RepeatButton x:Name="decRepeatButton" Grid.Row="1" Grid.Column="1" Width="22" Height="9">
+                                <Rectangle Width="16" Height="5" Fill="{StaticResource brushScrollDown}" />
+                            </RepeatButton>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type c:IntegerSpin}" BasedOn="{StaticResource NumericSpinX}" />
+
+    <Style TargetType="{x:Type c:DoubleSpin}" BasedOn="{StaticResource NumericSpinX}" />
+
+    <Style TargetType="{x:Type c:DecimalSpin}" BasedOn="{StaticResource NumericSpinX}" />
+    
+</ResourceDictionary>

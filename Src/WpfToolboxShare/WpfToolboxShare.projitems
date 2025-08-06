@@ -3,13 +3,67 @@
   <PropertyGroup>
     <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>894c69e2-96c7-4bce-a3ff-4db487501f32</SharedGUID>
+    <SharedGUID>c8aef1fc-ce7a-4e70-a4f4-d3c7169ee0bd</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>WpfToolbox</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Misc\" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attributes\AttributeHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attributes\ImageAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attributes\ResourceAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviours\ConverterBindableBinding.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviours\InputBindingsManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\BindingProxy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\DataGridAutoFilterColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\DataGridAutoFilterEnumColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\DataGridAutoFilterTextColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\DataGridButtonColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\DataGridColorColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\DataGridFilterColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\DataGridFilterTextColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\DataGridPasswordColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\ExtendedDataGrid.Checkable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\ExtendedDataGrid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\ExtendedDataGrid.ExportToExcel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\ExtendedDataGrid.Filter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\ExtendedDataGrid.Request.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\ExtendedDataGrid.SortRows.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\IFilterItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\EnumComboBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\DecimalSlider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\DecimalSpin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\DoubleSlider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\DoubleSpin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\IntegerSlider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\IntegerSpin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\NumericBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Primitives\BindablePasswordBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Primitives\MaskedTextBlock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Ribbon\PersistentRibbon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Ribbon\RibbonComboBoxEx.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ToggleSwitch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\DebugConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\DescriptionConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\RadioButtonConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\ResourceConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\BindingHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\EntryAssemblyResourceManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Usings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\NumericSlider.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\NumericSpin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\ToggleSwitch.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>

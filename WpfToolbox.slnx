@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Src/">
+    <Project Path="Src/WpfToolbox80/WpfToolbox80.csproj" />
     <Project Path="Src/WpfToolbox90/WpfToolbox90.csproj" Id="1cb0735c-e9e1-4e89-8715-e509d93afe6b" />
     <Project Path="Src/WpfToolboxShare/WpfToolboxShare.shproj" Id="894c69e2-96c7-4bce-a3ff-4db487501f32" />
   </Folder>
