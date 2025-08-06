@@ -16,6 +16,7 @@ global using System.Windows.Input;
 global using System.Windows.Markup;
 global using System.Windows.Media;
 global using System.Windows.Shapes;
+global using System.Windows.Threading;
 
 global using DocumentFormat.OpenXml;
 global using DocumentFormat.OpenXml.Packaging;
