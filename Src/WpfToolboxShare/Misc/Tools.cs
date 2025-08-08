@@ -17,6 +17,21 @@ public static class Tools
         }
     }
 
+    public static void OpenExplorer(string url)
+    {
+        try
+        {
+            Process myProcess = new();
+            myProcess.StartInfo.UseShellExecute = true;
+            myProcess.StartInfo.FileName = url;
+            myProcess.Start();
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine(e.Message);
+        }
+    }
+
     public static void OpenHelp(string? filePath = null)
     {
         filePath ??= System.IO.Path.ChangeExtension(Assembly.GetEntryAssembly()!.Location, ".chm");
