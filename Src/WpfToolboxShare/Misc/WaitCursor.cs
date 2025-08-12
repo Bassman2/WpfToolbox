@@ -14,7 +14,7 @@ public class WaitCursor : IDisposable
         }
         else
         {
-            Application.Current.Dispatcher.BeginInvoke(() =>
+            Application.Current.Dispatcher.Invoke(() =>
             {
                 cursor = Mouse.OverrideCursor;
                 Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
@@ -30,7 +30,7 @@ public class WaitCursor : IDisposable
         }
         else
         {
-            Application.Current.Dispatcher.BeginInvoke(() => Mouse.OverrideCursor = cursor);
+            Application.Current.Dispatcher.Invoke(() => Mouse.OverrideCursor = cursor);
         }
     }
 }
