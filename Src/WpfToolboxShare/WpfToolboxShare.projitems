@@ -50,6 +50,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converter\ResourceConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\BindingHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\EntryAssemblyResourceManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Misc\ApplicationDispatcher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Misc\Tools.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Misc\WaitCursor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Usings.cs" />
