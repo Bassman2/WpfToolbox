@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\AttributeHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\ImageAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\ResourceAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviours\BindingProxy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviours\ConverterBindableBinding.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviours\InputBindingsManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomControl.cs" />
