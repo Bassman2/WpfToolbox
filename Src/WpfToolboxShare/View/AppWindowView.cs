@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xaml.Behaviors;
 using System.Windows;
 using System.Windows.Data;
+
 using System.Windows.Input;
 using System.Windows.Shell;
 
@@ -32,7 +33,7 @@ public class AppWindowView : Window
 
     protected void SetKeyBinding(Key key, string commandName)
     {
-        KeyBinding keyBinding = new () { Key = key };
+        var keyBinding = new KeyBinding() { Key = key };
         BindingOperations.SetBinding(keyBinding, KeyBinding.CommandProperty, new Binding(commandName));
         this.InputBindings.Add(keyBinding);
     }
@@ -41,8 +42,25 @@ public class AppWindowView : Window
     {
         Microsoft.Xaml.Behaviors.EventTrigger trigger = new(eventName);
         Microsoft.Xaml.Behaviors.InvokeCommandAction action = new() { PassEventArgsToCommand = passEventArgsToCommand };
+        //Microsoft.Xaml.Behaviors.InvokeCommandAction action = new Microsoft.Xaml.Behaviors.InvokeCommandAction() { PassEventArgsToCommand = passEventArgsToCommand };
         BindingOperations.SetBinding(action, Microsoft.Xaml.Behaviors.InvokeCommandAction.CommandProperty, new Binding(commandName));
         trigger.Actions.Add(action);
         Microsoft.Xaml.Behaviors.Interaction.GetTriggers(this).Add(trigger);
+    }
+
+    protected void OnHyperlinkClick(object sender, RoutedEventArgs e)
+    {
+        Hyperlink link = (Hyperlink)e.OriginalSource;
+        try
+        {
+            Process myProcess = new();
+            myProcess.StartInfo.UseShellExecute = true;
+            myProcess.StartInfo.FileName = link.NavigateUri.AbsoluteUri;
+            myProcess.Start();
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
     }
 }

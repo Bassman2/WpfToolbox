@@ -1,6 +1,6 @@
 ﻿namespace WpfToolbox.ViewModel;
 
-public abstract partial class AppViewModel : ObservableObject
+public abstract partial class AppViewModel : ObservableValidator
 {
     //private TaskbarItemProgressState progressState = TaskbarItemProgressState.None;
     //private double progressValue = 0.0;
@@ -15,6 +15,9 @@ public abstract partial class AppViewModel : ObservableObject
         mainWindow = Application.Current.MainWindow;
         mainDispatcher = Application.Current.MainWindow.Dispatcher;
     }
+
+
+    public static string LocalAppDataPath => System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), System.IO.Path.GetFileNameWithoutExtension(System.Diagnostics.Process.GetCurrentProcess().ProcessName));
 
     #region Title
 
@@ -32,6 +35,18 @@ public abstract partial class AppViewModel : ObservableObject
             return $"{title} {version}";
         }
     }
+
+    #endregion
+
+    #region Drag & Drop
+
+    [RelayCommand]
+    protected virtual void OnDrag(DragEventArgs args)
+    { }
+
+    [RelayCommand]
+    protected virtual void OnDrop(DragEventArgs args)
+    { }
 
     #endregion
 
@@ -77,24 +92,30 @@ public abstract partial class AppViewModel : ObservableObject
     protected ApplicationSettingsBase? settings = null;
 
     //private void UpgradeSettings()
-   // {
-//        // for upgrade add settings
-//        // NeedsUpgrade | bool | User | true
-//        const string upgradeProperty = "NeedsUpgrade";
+    // {
+    //        // for upgrade add settings
+    //        // NeedsUpgrade | bool | User | true
+    //        const string upgradeProperty = "NeedsUpgrade";
 
-        // upgrade settings
-//        if (settings != null && (bool)settings[upgradeProperty])
-//        {
-//            settings.Upgrade();
-//            settings.Reload();
-//            settings[upgradeProperty] = false;
-//            settings.Save();
+    // upgrade settings
+    //        if (settings != null && (bool)settings[upgradeProperty])
+    //        {
+    //            settings.Upgrade();
+    //            settings.Reload();
+    //            settings[upgradeProperty] = false;
+    //            settings.Save();
     //    }
     //}
 
     #endregion
 
     #region Progress
+
+    /// <summary>
+    /// Status text in status line.
+    /// </summary>
+    [ObservableProperty]
+    private string statusText = "Ready";
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ShowProgress))]
@@ -104,13 +125,6 @@ public abstract partial class AppViewModel : ObservableObject
 
     [ObservableProperty]
     private double progressValue = 0.0;
-
-    /// <summary>
-    /// Status text in status line.
-    /// </summary>
-    [ObservableProperty]
-    private string statusText = "Ready";
-    
 
     public void ProgressForEach<T>(List<T> list, Action<T> action, double start = 0.0, double size = 1.0)
     {
@@ -207,11 +221,38 @@ public abstract partial class AppViewModel : ObservableObject
 
     [RelayCommand]
     protected virtual void OnAbout()
-    { }
+    {
+
+        Assembly app = Assembly.GetEntryAssembly()!;
+        string title = app.GetCustomAttribute<AssemblyTitleAttribute>()!.Title;
+        string product = app.GetCustomAttribute<AssemblyProductAttribute>()!.Product;
+        string company = app.GetCustomAttribute<AssemblyCompanyAttribute>()?.Company ?? "";
+        string copyright = app.GetCustomAttribute<AssemblyCopyrightAttribute>()?.Copyright ?? "";
+        string description = app.GetCustomAttribute<AssemblyDescriptionAttribute>()?.Description ?? "";
+        var ver = app.GetName()!.Version!;
+        string version = ver.Build > 0 ? ver.ToString(3) : ver.ToString(2);
+
+        string info = $"{product ?? title} {version}\n{copyright} {company}\n{description}";
+        MessageBox.Show(Application.Current.MainWindow, info, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+    }
+
+    protected string HelpPage { get; set; } = null!;
 
     [RelayCommand]
     protected virtual void OnHelp()
-    { }
+    {
+        try
+        {
+            Process myProcess = new();
+            myProcess.StartInfo.UseShellExecute = true;
+            myProcess.StartInfo.FileName = HelpPage;
+            myProcess.Start();
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine(e.Message);
+        }
+    }
 
     protected virtual bool OnCanExit => true;
     

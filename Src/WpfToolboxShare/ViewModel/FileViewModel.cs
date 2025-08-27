@@ -209,26 +209,9 @@ public abstract partial class FileViewModel : AppViewModel
     //    }
     //}
 
-    /// <summary>
-    /// Drag handler for drag and drop files
-    /// </summary>
-    /// <param name="args"></param>
-    /// <example>
-    /// &lt;Window x:Class="InternalInvoiceManager.MainView" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"&gt;
-    /// &lt;i:Interaction.Triggers&gt;
-    ///     &lt;i:EventTrigger EventName="PreviewDragEnter"&gt;
-    ///         &lt;EventToCommand Command="{Binding DragCommand}" PassEventArgsToCommand="True"/&gt;
-    ///     &lt;/i:EventTrigger&gt;
-    ///     &lt;i:EventTrigger EventName="PreviewDragOver"&gt;
-    ///         &lt;EventToCommand Command="{Binding DragCommand}" PassEventArgsToCommand="True"/&gt;
-    ///     &lt;/i:EventTrigger&gt;
-    ///     &lt;i:EventTrigger EventName="PreviewDrop"&gt;
-    ///     &lt;EventToCommand Command="{Binding DropCommand}" PassEventArgsToCommand="True"/&gt;
-    ///     &lt;/i:EventTrigger&gt;
-    /// &lt;/i:Interaction.Triggers&gt;
-    /// &lt;/example&gt;
-    [RelayCommand]
-    protected virtual void OnDrag(DragEventArgs args)
+    #region Drag & Drop
+
+    protected override void OnDrag(DragEventArgs args)
     {
         ArgumentNullException.ThrowIfNull(args, nameof(args));
 
@@ -247,27 +230,9 @@ public abstract partial class FileViewModel : AppViewModel
         args.Effects = isCorrect ? DragDropEffects.All : DragDropEffects.None;
         args.Handled = true;
     }
-
-    /// <summary>
-    /// Drop handler for drag and drop files
-    /// </summary>
-    /// <param name="args"></param>
-    /// <example>
-    /// &lt;Window x:Class="InternalInvoiceManager.MainView" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"&gt;
-    /// &lt;i:Interaction.Triggers&gt;
-    ///     &lt;i:EventTrigger EventName="PreviewDragEnter"&gt;
-    ///         &lt;EventToCommand Command="{Binding DragCommand}" PassEventArgsToCommand="True"/&gt;
-    ///     &lt;/i:EventTrigger&gt;
-    ///     &lt;i:EventTrigger EventName="PreviewDragOver"&gt;
-    ///         &lt;EventToCommand Command="{Binding DragCommand}" PassEventArgsToCommand="True"/&gt;
-    ///     &lt;/i:EventTrigger&gt;
-    ///     &lt;i:EventTrigger EventName="PreviewDrop"&gt;
-    ///     &lt;EventToCommand Command="{Binding DropCommand}" PassEventArgsToCommand="True"/&gt;
-    ///     &lt;/i:EventTrigger&gt;
-    /// &lt;/i:Interaction.Triggers&gt;
-    /// &lt;/example&gt;
-    [RelayCommand]
-    protected virtual void OnDrop(DragEventArgs args)
+       
+    
+    protected override void OnDrop(DragEventArgs args)
     {
         ArgumentNullException.ThrowIfNull(args, nameof(args));
 
@@ -281,6 +246,8 @@ public abstract partial class FileViewModel : AppViewModel
         }
         args.Handled = true;
     }
+
+    #endregion
 
     /// <summary>
     /// Closing handler to store changed files on exit.
