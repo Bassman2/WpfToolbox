@@ -13,8 +13,7 @@ public class DescriptionConverter : IValueConverter
         if (value is Enum)
         {
             FieldInfo? fieldInfo = value.GetType().GetField(value.ToString()!);
-            DescriptionAttribute? attribute = fieldInfo?.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault() as DescriptionAttribute;
-            return (attribute == null ? value.ToString() : attribute.Description)!;
+            return (fieldInfo?.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault() is not DescriptionAttribute attribute ? value.ToString() : attribute.Description)!;
         }
         return value;
     }

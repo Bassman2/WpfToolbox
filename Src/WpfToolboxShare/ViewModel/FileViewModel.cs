@@ -1,4 +1,4 @@
-﻿namespace MvvmAppBase.ViewModel;
+﻿namespace WpfToolbox.ViewModel;
 
 public abstract partial class FileViewModel : AppViewModel
 {
@@ -348,7 +348,7 @@ public abstract partial class FileViewModel : AppViewModel
 
             // store recent file list
             System.Collections.Specialized.StringCollection col = [];
-            col.AddRange(this.RecentFiles.Select(f => f.Path).ToArray());
+            col.AddRange([.. this.RecentFiles.Select(f => f.Path)]);
 
             ApplicationSettingsBase? settings = GetApplicationSettings();
             if (settings != null)

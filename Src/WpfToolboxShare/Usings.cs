@@ -2,6 +2,7 @@
 global using System.Collections.ObjectModel;
 global using System.Collections.Specialized;
 global using System.ComponentModel;
+global using System.Configuration;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
 global using System.Globalization;
@@ -16,7 +17,11 @@ global using System.Windows.Input;
 global using System.Windows.Markup;
 global using System.Windows.Media;
 global using System.Windows.Shapes;
+global using System.Windows.Shell;
 global using System.Windows.Threading;
+
+global using CommunityToolkit.Mvvm.ComponentModel;
+global using CommunityToolkit.Mvvm.Input;
 
 global using DocumentFormat.OpenXml;
 global using DocumentFormat.OpenXml.Packaging;
@@ -27,3 +32,4 @@ global using WpfToolbox.Controls;
 global using WpfToolbox.Controls.Primitives;
 global using WpfToolbox.Converter;
 global using WpfToolbox.Internal;
+global using WpfToolbox.Misc;

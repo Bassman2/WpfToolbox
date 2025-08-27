@@ -1,4 +1,4 @@
-﻿namespace MvvmAppBase.View;
+﻿namespace WpfToolbox.View;
 
 public class AppRibbonView : System.Windows.Controls.Ribbon.RibbonWindow
 {

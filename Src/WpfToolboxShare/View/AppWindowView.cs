@@ -4,7 +4,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Shell;
 
-namespace MvvmAppBase.View;
+namespace WpfToolbox.View;
 
 public class AppWindowView : Window
 {

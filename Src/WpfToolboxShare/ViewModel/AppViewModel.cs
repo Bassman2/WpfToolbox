@@ -1,4 +1,4 @@
-﻿namespace MvvmAppBase.ViewModel;
+﻿namespace WpfToolbox.ViewModel;
 
 public abstract partial class AppViewModel : ObservableObject
 {
@@ -6,10 +6,34 @@ public abstract partial class AppViewModel : ObservableObject
     //private double progressValue = 0.0;
     private readonly string progressTime = string.Empty;
 
+    protected readonly Window mainWindow;
+    protected readonly Dispatcher mainDispatcher;
+
     public AppViewModel()
     {
         UpgradeSettings();
+        mainWindow = Application.Current.MainWindow;
+        mainDispatcher = Application.Current.MainWindow.Dispatcher;
     }
+
+    #region Title
+
+    /// <summary>
+    /// The main title of the application. Displayed in the main window header and in the taskbar.
+    /// </summary>
+    public virtual string Title
+    {
+        get
+        {
+            Assembly app = Assembly.GetEntryAssembly()!;
+            string title = app.GetCustomAttribute<AssemblyTitleAttribute>()!.Title;
+            var ver = app.GetName()!.Version!;
+            string version = ver.Build > 0 ? ver.ToString(3) : ver.ToString(2);
+            return $"{title} {version}";
+        }
+    }
+
+    #endregion
 
     #region Settings
 
@@ -49,21 +73,24 @@ public abstract partial class AppViewModel : ObservableObject
         //}
     }
 
-    #endregion
 
-    #region Title
+    protected ApplicationSettingsBase? settings = null;
 
-    /// <summary>
-    /// The main title of the application. Displayed in the main window header and in the taskbar.
-    /// </summary>
-    public virtual string Title
-    {
-        get
-        {
-            var ass = System.Reflection.Assembly.GetEntryAssembly()!.GetName()!;
-            return $"{ass.Name} {ass.Version!.ToString(2)}";
-        }
-    }
+    //private void UpgradeSettings()
+   // {
+//        // for upgrade add settings
+//        // NeedsUpgrade | bool | User | true
+//        const string upgradeProperty = "NeedsUpgrade";
+
+        // upgrade settings
+//        if (settings != null && (bool)settings[upgradeProperty])
+//        {
+//            settings.Upgrade();
+//            settings.Reload();
+//            settings[upgradeProperty] = false;
+//            settings.Save();
+    //    }
+    //}
 
     #endregion
 
@@ -83,24 +110,36 @@ public abstract partial class AppViewModel : ObservableObject
     /// </summary>
     [ObservableProperty]
     private string statusText = "Ready";
+    
 
-    //private void OnProgressState(ProgressStateEventArgs args)
-    //{
-    //    this.ProgressState = args.State;
-    //}
+    public void ProgressForEach<T>(List<T> list, Action<T> action, double start = 0.0, double size = 1.0)
+    {
+        if (list.Count == 0) return;
+        ProgressState = TaskbarItemProgressState.Normal;
+        ProgressValue = start;
+        double step = size / list.Count;
+        foreach (var item in list)
+        {
+            action(item);
+            ProgressValue += step;
+        }
+        ProgressState = TaskbarItemProgressState.None;
+    }
 
-    //private void OnProgressValue(ProgressValueEventArgs args)
-    //{
-    //    this.ProgressValue = args.Value;
-    //}
+    private double progressStep = 0.0;
 
-    //private void OnProgressText(ProgressTextEventArgs args)
-    //{
-    //    this.StatusText = args.Text;
-    //}
+    public void ProgressStart(int count)
+    {
+        if (count <= 0) return;
+        ProgressState = TaskbarItemProgressState.Normal;
+        ProgressValue = 0.0;
+        progressStep = 1.0 / count;
+    }
 
-    public static bool IsWorking => false;
+    public void ProgressStep() => ProgressValue += progressStep;
 
+    public void ProgressStop() => ProgressState = TaskbarItemProgressState.None;
+    
     #endregion
 
     #region command methods
@@ -115,7 +154,7 @@ public abstract partial class AppViewModel : ObservableObject
         }
         else
         {
-            Application.Current.Dispatcher.BeginInvoke(new Action(() => OnActivate()), DispatcherPriority.ContextIdle, null);
+            Application.Current.Dispatcher.Invoke(OnActivate, DispatcherPriority.ContextIdle, null);
         }
     }
 
@@ -125,8 +164,10 @@ public abstract partial class AppViewModel : ObservableObject
     protected virtual bool OnCanRefresh() => true;
     
     [RelayCommand(CanExecute = nameof(OnCanRefresh))]
-    protected virtual void OnRefresh()
-    { }
+    protected virtual async Task OnRefresh()
+    {
+        await Task.Run(() => { });
+    }
 
     protected virtual bool OnCanImport() => this.ProgressState == TaskbarItemProgressState.None;
 
@@ -170,17 +211,7 @@ public abstract partial class AppViewModel : ObservableObject
 
     [RelayCommand]
     protected virtual void OnHelp()
-    {
-        string path = System.IO.Path.ChangeExtension(System.Reflection.Assembly.GetEntryAssembly()!.Location, ".chm");
-        if (System.IO.File.Exists(path))
-        {
-            System.Diagnostics.Process.Start(path);
-        }
-        else
-        {
-            MessageBox.Show(string.Format("Help file \"{0}\" not found!", path), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-    }
+    { }
 
     protected virtual bool OnCanExit => true;
     
@@ -204,4 +235,34 @@ public abstract partial class AppViewModel : ObservableObject
     
     #endregion
 
+    #region error message box
+
+    public static void HandleErrorMessage(Action action)
+    {
+        try
+        {
+            action();
+        }
+        catch (Exception ex)
+        {
+            Exception e = ex is AggregateException && ex.InnerException is not null ? ex.InnerException : ex;
+            Debug.WriteLine(e);
+            ApplicationDispatcher.Invoke(() => MessageBox.Show(Application.Current.MainWindow, e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error));
+        }
+    }
+
+    public static void HandleErrorMessage(Action action, string caption)
+    {
+        try
+        {
+            action();
+        }
+        catch (Exception ex)
+        {
+            Exception e = ex is AggregateException && ex.InnerException is not null ? ex.InnerException : ex;
+            Debug.WriteLine(e);
+            ApplicationDispatcher.Invoke(() => MessageBox.Show(Application.Current.MainWindow, e.Message, caption, MessageBoxButton.OK, MessageBoxImage.Error));
+        }
+    }
+    #endregion
 }

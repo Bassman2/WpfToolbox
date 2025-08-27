@@ -55,6 +55,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Misc\Tools.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Misc\WaitCursor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Usings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AppViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\FileViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\AppRibbonView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\AppWindowView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Themes\Generic.xaml">
