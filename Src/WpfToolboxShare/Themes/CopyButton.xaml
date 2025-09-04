@@ -3,17 +3,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ctrl="clr-namespace:WpfToolbox.Controls">
 
-    
+    <Image x:Key="copyImage" Width="16" Height="16" Source="pack://application:,,,/WpfToolbox;component/Images/Copy16.png" x:Shared="false"/>
+
     <Style TargetType="{x:Type ctrl:CopyButton}" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="Width" Value="20"/>
         <Setter Property="Height" Value="20"/>
         <Setter Property="IsEnabled" Value="False"/>
         <Setter Property="ToolTip" Value="Copy to Clipboard"/>
-        <Setter Property="Content">
-            <Setter.Value>
-                <Image Source="/WpfToolbox;component/Images/Copy16.png" Width="16" Height="16"/>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Content" Value="{StaticResource copyImage}"/>
+        
     </Style>
     
 </ResourceDictionary>
