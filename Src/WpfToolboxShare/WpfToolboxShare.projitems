@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Behaviours\BindingProxy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviours\ConverterBindableBinding.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviours\InputBindingsManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CopyButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\BindingProxy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\DataGridAutoFilterColumn.cs" />
@@ -62,6 +63,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)View\AppWindowView.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\CopyButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Themes\Generic.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -74,5 +79,8 @@
     <Page Include="$(MSBuildThisFileDirectory)Themes\ToggleSwitch.xaml">
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Copy16.png" />
   </ItemGroup>
 </Project>

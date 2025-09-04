@@ -6,6 +6,7 @@
         <ResourceDictionary Source="/WpfToolbox;component/Themes/ToggleSwitch.xaml" />
         <ResourceDictionary Source="/WpfToolbox;component/Themes/NumericSlider.xaml" />
         <ResourceDictionary Source="/WpfToolbox;component/Themes/NumericSpin.xaml" />
+        <ResourceDictionary Source="/WpfToolbox;component/Themes/CopyButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type c:CustomControl}">
