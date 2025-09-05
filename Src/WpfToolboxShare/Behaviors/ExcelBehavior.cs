@@ -5,10 +5,6 @@ namespace WpfToolbox.Behaviors;
 
 public class ExcelBehavior : Behavior<DataGrid>
 {
-    protected override void OnAttached()
-    {
-    }
-
     public static readonly DependencyProperty ExportToExcelFileProperty =
         DependencyProperty.Register("ExportToExcelFile", typeof(string), typeof(ExcelBehavior), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(
           (d, e) => ((ExcelBehavior)d).OnExportToExcelFileChanged((string)e.NewValue))));
