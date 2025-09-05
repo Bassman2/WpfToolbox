@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\ImageAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\ResourceAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\BindingProxy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ColumnsBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ConverterBindableBinding.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ExcelBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\InputBindingsManager.cs" />
