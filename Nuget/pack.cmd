@@ -1,0 +1,1 @@
+nuget pack WpfToolbox.nuspec -properties Configuration=Release
