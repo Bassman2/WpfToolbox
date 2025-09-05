@@ -112,7 +112,7 @@ public partial class ExtendedDataGrid : DataGrid
     //    return sheetData;
     //}
 
-    public Sheet CreateSheet(SpreadsheetDocument spreadsheetDocument, string sheetName)
+    public static Sheet CreateSheet(SpreadsheetDocument spreadsheetDocument, string sheetName)
     {
         // Add a WorkbookPart to the document.
         WorkbookPart workbookPart = spreadsheetDocument.AddWorkbookPart();
@@ -120,20 +120,20 @@ public partial class ExtendedDataGrid : DataGrid
 
         // Add a WorksheetPart to the WorkbookPart.
         WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
-        SheetData sheetData = new SheetData();
+        var sheetData = new SheetData();
         worksheetPart.Worksheet = new Worksheet(sheetData);
 
         // Add Sheets to the Workbook.
         Sheets sheets = workbookPart.Workbook.AppendChild(new Sheets());
 
         // Append a new worksheet and associate it with the workbook.
-        Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "sheetName" };
+        var sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "sheetName" };
         sheets.Append(sheet);
 
         return sheet;
     }
 
-    public SheetData CreateSheetData(SpreadsheetDocument spreadsheetDocument, string sheetName)
+    public static SheetData CreateSheetData(SpreadsheetDocument spreadsheetDocument, string sheetName)
     {
         // Add a WorkbookPart to the document.
         WorkbookPart workbookPart = spreadsheetDocument.AddWorkbookPart();
@@ -141,20 +141,20 @@ public partial class ExtendedDataGrid : DataGrid
 
         // Add a WorksheetPart to the WorkbookPart.
         WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
-        SheetData sheetData = new SheetData();
+        var sheetData = new SheetData();
         worksheetPart.Worksheet = new Worksheet(sheetData);
 
         // Add Sheets to the Workbook.
         Sheets sheets = workbookPart.Workbook.AppendChild(new Sheets());
 
         // Append a new worksheet and associate it with the workbook.
-        Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "sheetName" };
+        var sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "sheetName" };
         sheets.Append(sheet);
 
         return sheetData;
     }
 
-    public void InserCell(SheetData sheetData, uint colIndex, uint rowIndex, string val)
+    public static void InserCell(SheetData sheetData, uint colIndex, uint rowIndex, string val)
     {
         string columnName = ((char)('@' + (char)(colIndex))).ToString();
         string cellReference = columnName + rowIndex;
