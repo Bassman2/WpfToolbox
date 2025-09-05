@@ -1,8 +1,8 @@
 ﻿namespace WpfToolbox.Controls;
 
-public partial class ExtendedDataGrid : DataGrid
-{
-}
+//public partial class ExtendedDataGrid : DataGrid
+//{
+//}
 
 //namespace DataGridColumns.Controls;
 
