@@ -30,9 +30,10 @@ public abstract partial class AppViewModel : ObservableValidator
         {
             Assembly app = Assembly.GetEntryAssembly()!;
             string title = app.GetCustomAttribute<AssemblyTitleAttribute>()!.Title;
+            string product = app.GetCustomAttribute<AssemblyProductAttribute>()!.Product;
             var ver = app.GetName()!.Version!;
             string version = ver.Build > 0 ? ver.ToString(3) : ver.ToString(2);
-            return $"{title} {version}";
+            return $"{product ?? title} {version}";
         }
     }
 
@@ -159,21 +160,20 @@ public abstract partial class AppViewModel : ObservableValidator
     #region command methods
 
     [RelayCommand]
-    public virtual void OnStartup()
+    public void OnLoaded()
     {
         if (Application.Current == null)
         {
             // for testing
-            OnActivate();
+            OnStartup();
         }
         else
         {
-            Application.Current.Dispatcher.Invoke(OnActivate, DispatcherPriority.ContextIdle, null);
+            Application.Current.Dispatcher.Invoke(OnStartup, DispatcherPriority.ContextIdle, null);
         }
     }
 
-    //[RelayCommand]
-    protected abstract void OnActivate();
+    protected virtual void OnStartup() { }
 
     protected virtual bool OnCanRefresh() => true;
     

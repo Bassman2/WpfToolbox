@@ -1,1 +1,2 @@
 ﻿[assembly:XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "WpfToolbox.Controls")]
+[assembly:XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "WpfToolbox.View")]

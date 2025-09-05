@@ -25,8 +25,7 @@ public abstract partial class FileViewModel : AppViewModel
         this.MaxNumOfRecentFiles = 10;
     }
 
-    //[RelayCommand]
-    public override void OnStartup()
+    protected override void OnStartup()
     {
         LoadRecentFileList();
 

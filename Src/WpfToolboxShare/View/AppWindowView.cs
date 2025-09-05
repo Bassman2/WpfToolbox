@@ -1,11 +1,4 @@
-﻿using Microsoft.Xaml.Behaviors;
-using System.Windows;
-using System.Windows.Data;
-
-using System.Windows.Input;
-using System.Windows.Shell;
-
-namespace WpfToolbox.View;
+﻿namespace WpfToolbox.View;
 
 public class AppWindowView : Window
 {
@@ -21,7 +14,7 @@ public class AppWindowView : Window
         TaskbarItemInfo = taskbarItemInfo;
 
         this.SetKeyBinding(Key.F5, "RefreshCommand");
-        this.SetEventBinding("Loaded", "StartupCommand");
+        this.SetEventBinding("Loaded", "LoadedCommand");
         this.SetEventBinding("Closing", "ClosingCommand", true);
 
         // set AllowDrop = true to enable drag & drop
