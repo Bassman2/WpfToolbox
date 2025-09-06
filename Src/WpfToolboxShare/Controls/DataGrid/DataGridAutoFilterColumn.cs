@@ -10,9 +10,9 @@ public abstract class DataGridAutoFilterColumn : DataGridFilterColumn
 
         checkedFilters = filters?.Where(f => f.IsChecked == true).ToList();
 
-        if (this.DataGridOwner is ExtendedDataGrid dataGrid)
+        if (this.DataGridOwner is DataGrid dataGrid)
         {
-            dataGrid.RefreshFilter();
+            //dataGrid.RefreshFilter();
         }
     }
     

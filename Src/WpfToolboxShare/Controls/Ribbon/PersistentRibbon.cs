@@ -17,10 +17,10 @@ public class PersistentRibbon : Ribbon
 
         if (this.QuickAccessToolBar != null && this.QuickAccessToolBar.Items != null)
         {
-            List<QatItem> qatItems = this.QuickAccessToolBar.Items.Cast<object>().
+            List<QatItem> qatItems = [.. this.QuickAccessToolBar.Items.Cast<object>().
                 Select(i => i as FrameworkElement).Where(e => e != null).
                 Select(e => RibbonControlService.GetQuickAccessToolBarId(e)).Where(id => id != null).
-                Select(q => new QatItem(q.GetHashCode())).ToList();
+                Select(q => new QatItem(q.GetHashCode()))];
                         
             List<QatItem> remainingItems = [];
             remainingItems.AddRange(qatItems);
@@ -144,7 +144,7 @@ public class PersistentRibbon : Ribbon
             string text = Properties.Settings.Default.QuickAccessToolBar;
             if (!string.IsNullOrEmpty(text))
             {
-                List<QatItem> qatItems = text.Split(',').Select(i => Int32Collection.Parse(i)).Select(x => new QatItem() { ControlIndices = x }).ToList();
+                List<QatItem> qatItems = [.. text.Split(',').Select(i => Int32Collection.Parse(i)).Select(x => new QatItem() { ControlIndices = x })];
                 if ((qatItems != null) && (qatItems.Count > 0))
                 {
                     SearchInApplicationMenu(qatItems);
@@ -225,7 +225,7 @@ public class PersistentRibbon : Ribbon
         }
     }
 
-    private static void LoadQatItemsAmongChildren(List<QatItem> previouslyMatchedItems, int matchLevel, int controlIndex, object parent, ref int remainingItemsCount)
+    private static void LoadQatItemsAmongChildren(List<QatItem> previouslyMatchedItems, int matchLevel, int _ /*controlIndex*/, object parent, ref int remainingItemsCount)
     {
         if (previouslyMatchedItems.Count == 0)
         {

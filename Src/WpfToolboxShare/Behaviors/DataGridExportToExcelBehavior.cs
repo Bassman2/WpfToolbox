@@ -3,11 +3,11 @@ using Microsoft.Xaml.Behaviors;
 
 namespace WpfToolbox.Behaviors;
 
-public class ExcelBehavior : Behavior<DataGrid>
+public class DataGridExportToExcelBehavior : Behavior<DataGrid>
 {
     public static readonly DependencyProperty ExportToExcelFileProperty =
-        DependencyProperty.Register("ExportToExcelFile", typeof(string), typeof(ExcelBehavior), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(
-          (d, e) => ((ExcelBehavior)d).OnExportToExcelFileChanged((string)e.NewValue))));
+        DependencyProperty.Register("ExportToExcelFile", typeof(string), typeof(DataGridExportToExcelBehavior), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(
+          (d, e) => ((DataGridExportToExcelBehavior)d).OnExportToExcelFileChanged((string)e.NewValue))));
 
     public string ExportToExcelFile
     {
@@ -16,7 +16,7 @@ public class ExcelBehavior : Behavior<DataGrid>
     }
 
     public static readonly DependencyProperty ExportHiddenColumnsProperty =
-        DependencyProperty.Register("ExportHiddenColumns", typeof(bool), typeof(ExcelBehavior), new FrameworkPropertyMetadata(false));
+        DependencyProperty.Register("ExportHiddenColumns", typeof(bool), typeof(DataGridExportToExcelBehavior), new FrameworkPropertyMetadata(false));
 
     public bool ExportHiddenColumns
     {
@@ -25,7 +25,7 @@ public class ExcelBehavior : Behavior<DataGrid>
     }
 
     public static readonly DependencyProperty SheetNameProperty =
-        DependencyProperty.Register("SheetName", typeof(string), typeof(ExcelBehavior), new FrameworkPropertyMetadata("Sheet"));
+        DependencyProperty.Register("SheetName", typeof(string), typeof(DataGridExportToExcelBehavior), new FrameworkPropertyMetadata("Sheet"));
 
     public string SheetName
     {

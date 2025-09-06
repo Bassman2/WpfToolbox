@@ -25,11 +25,14 @@ global using System.Windows.Threading;
 global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
 
+global using Microsoft.Xaml.Behaviors;
+
 global using DocumentFormat.OpenXml;
 global using DocumentFormat.OpenXml.Packaging;
 //global using DocumentFormat.OpenXml.Spreadsheet;
 
 global using WpfToolbox.Attributes;
+global using WpfToolbox.Behaviors;
 global using WpfToolbox.Controls;
 global using WpfToolbox.Controls.Primitives;
 global using WpfToolbox.Converter;

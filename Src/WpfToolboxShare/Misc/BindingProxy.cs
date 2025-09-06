@@ -1,4 +1,4 @@
-﻿namespace WpfToolbox.Behaviors;
+﻿namespace WpfToolbox.Misc;
 
 public class BindingProxy : Freezable
 {

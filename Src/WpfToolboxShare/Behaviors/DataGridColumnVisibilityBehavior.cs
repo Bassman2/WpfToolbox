@@ -12,7 +12,7 @@ namespace WpfToolbox.Behaviors;
 /// - The <see cref="ColumnVisibility"/> property stores the visibility state as a bitmask.
 /// - The <see cref="SettingsName"/> property specifies the application setting key for persistence.
 /// </remarks>
-public class ColumnsBehavior : Behavior<DataGrid>
+public class DataGridColumnVisibilityBehavior : Behavior<DataGrid>
 {
     /// <summary>
     /// The context menu displayed in the column header for toggling column visibility.
@@ -59,10 +59,10 @@ public class ColumnsBehavior : Behavior<DataGrid>
     /// Identifies the <see cref="ColumnVisibility"/> dependency property.
     /// </summary>
     public static readonly DependencyProperty ColumnVisibilityProperty =
-        DependencyProperty.Register("ColumnVisibility", typeof(uint), typeof(ColumnsBehavior),
+        DependencyProperty.Register("ColumnVisibility", typeof(uint), typeof(DataGridColumnVisibilityBehavior),
             new FrameworkPropertyMetadata(uint.MaxValue,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
-                new PropertyChangedCallback((d, e) => ((ColumnsBehavior)d).CreateHeaderMenu((uint)e.NewValue))));
+                new PropertyChangedCallback((d, e) => ((DataGridColumnVisibilityBehavior)d).CreateHeaderMenu((uint)e.NewValue))));
 
     /// <summary>
     /// Gets or sets the bitmask representing the visibility of each column.

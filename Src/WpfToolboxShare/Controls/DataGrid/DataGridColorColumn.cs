@@ -19,7 +19,7 @@ public class DataGridColorColumn : DataGridBoundColumn
         public Brush Brush { get; } 
     }
 
-    private readonly static List<ColorName> colorNames = typeof(Colors).GetProperties().Select(p => new ColorName(p)).ToList();
+    private readonly static List<ColorName> colorNames = [.. typeof(Colors).GetProperties().Select(p => new ColorName(p))];
    
     protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem)
     {

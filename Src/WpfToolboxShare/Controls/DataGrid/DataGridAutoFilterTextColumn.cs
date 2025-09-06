@@ -12,7 +12,7 @@ public class DataGridAutoFilterTextColumn : DataGridAutoFilterColumn
                 throw new Exception($"{nameof(DataGridAutoFilterTextColumn)} Binding object must be an string");
             }
 
-            this.filters = items.Cast<object>().Select(o => this.Binding.GetBindingText(o) ?? string.Empty).Distinct().Order().Select(i => new FilterItem(i)).ToList();
+            this.filters = [.. items.Cast<object>().Select(o => this.Binding.GetBindingText(o) ?? string.Empty).Distinct().Order().Select(i => new FilterItem(i))];
             this.checkedFilters = filters?.Where(f => f.IsChecked == true).ToList();
             FillFilters();
         }

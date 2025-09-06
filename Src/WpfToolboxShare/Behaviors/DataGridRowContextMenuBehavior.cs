@@ -2,7 +2,7 @@
 
 namespace WpfToolbox.Behaviors;
 
-public class ContextMenuBehavior : Behavior<DataGrid>
+public class DataGridRowContextMenuBehavior : Behavior<DataGrid>
 {
     private ContextMenu? rowContextMenu;
 

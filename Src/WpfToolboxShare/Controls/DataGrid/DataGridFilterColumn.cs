@@ -172,4 +172,10 @@ public abstract class DataGridFilterColumn : DataGridTextColumn
             }
         }
     }
+
+    public interface IFilterItem
+    {
+        string Name { get; set; }
+        int Value { get; set; }
+    }
 }
