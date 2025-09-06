@@ -66,6 +66,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Misc\WaitCursor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Usings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AppViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\DialogViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\FileViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\AppRibbonView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\AppWindowView.cs" />
