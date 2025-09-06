@@ -69,6 +69,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\FileViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\AppRibbonView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\AppWindowView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\DialogButtonsView.xaml.cs">
+      <DependentUpon>DialogButtonsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\DialogView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Themes\CopyButton.xaml">
@@ -88,6 +92,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Themes\ToggleSwitch.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)View\DialogButtonsView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
