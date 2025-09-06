@@ -83,6 +83,9 @@
     <Page Include="$(MSBuildThisFileDirectory)Themes\NumericSpin.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\Converter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Themes\ToggleSwitch.xaml">
       <SubType>Designer</SubType>
     </Page>
