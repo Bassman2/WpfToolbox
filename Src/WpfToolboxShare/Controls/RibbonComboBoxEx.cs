@@ -1,7 +1,15 @@
 ﻿namespace WpfToolbox.Controls;
 
+/// <summary>
+/// An extended RibbonComboBox control that integrates a RibbonGallery for advanced item presentation.
+/// Supports custom item templates, item sources, and label width configuration.
+/// </summary>
 public class RibbonComboBoxEx : RibbonComboBox
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="RibbonComboBoxEx"/> class.
+    /// Subscribes to the Loaded event.
+    /// </summary>
     public RibbonComboBoxEx()
     {
         this.Loaded += OnLoaded;
@@ -9,6 +17,10 @@ public class RibbonComboBoxEx : RibbonComboBox
 
     private RibbonGallery? ribbonGallery;
 
+    /// <summary>
+    /// Applies the control template and sets up the RibbonGallery and its bindings.
+    /// Also configures the label width if specified.
+    /// </summary>
     public override void OnApplyTemplate()
     {
         ribbonGallery = new RibbonGallery();
@@ -40,6 +52,9 @@ public class RibbonComboBoxEx : RibbonComboBox
         }
     }
 
+    /// <summary>
+    /// Handles the Loaded event to ensure the RibbonGallery's selected item is synchronized.
+    /// </summary>
     private void OnLoaded(object sender, System.Windows.RoutedEventArgs e)
     {
         if (sender is RibbonComboBoxEx cb && cb.ribbonGallery != null)
@@ -52,17 +67,29 @@ public class RibbonComboBoxEx : RibbonComboBox
         }
     }
 
+    /// <summary>
+    /// Gets or sets the width of the label area.
+    /// </summary>
     public GridLength LabelWidth { get; set; }
 
+    // <summary>
+    /// Identifies the <see cref="SelectedItem"/> dependency property.
+    /// </summary>
     public static readonly DependencyProperty SelectedItemProperty =
         DependencyProperty.Register("SelectedItem", typeof(object), typeof(RibbonComboBoxEx), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedItemChanged)));
 
+    /// <summary>
+    /// Gets or sets the selected item in the RibbonComboBoxEx.
+    /// </summary>
     public object SelectedItem
     {
         get { return (object)GetValue(SelectedItemProperty); }
         set { SetValue(SelectedItemProperty, value); }
     }
 
+    /// <summary>
+    /// Handles changes to the <see cref="SelectedItem"/> property and updates the RibbonGallery selection.
+    /// </summary>
     private static void OnSelectedItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is RibbonComboBoxEx ribbonComboBoxEx && ribbonComboBoxEx.ribbonGallery != null)
@@ -71,9 +98,15 @@ public class RibbonComboBoxEx : RibbonComboBox
         }
     }
 
+    /// <summary>
+    /// Identifies the <see cref="ItemsSource"/> dependency property.
+    /// </summary>
     public static new readonly DependencyProperty ItemsSourceProperty =
        DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(RibbonComboBoxEx), new FrameworkPropertyMetadata(null));
 
+    /// <summary>
+    /// Gets or sets the collection used to generate the content of the RibbonComboBoxEx.
+    /// </summary>
     public new IEnumerable ItemsSource
     {
         get { return (IEnumerable)GetValue(ItemsSourceProperty); }

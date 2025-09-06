@@ -10,7 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Attributes\AttributeHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\RibbonPersistenceBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\AttributeHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\ImageAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\ResourceAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Misc\BindingProxy.cs" />
@@ -25,16 +26,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Misc\InputBindingsManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\DataGridRowArrangeBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CopyButton.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomControl.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\DataGridAutoFilterColumn.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\DataGridAutoFilterEnumColumn.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\DataGridAutoFilterTextColumn.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\DataGridButtonColumn.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\DataGridColorColumn.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\DataGridFilterColumn.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\DataGridFilterTextColumn.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\DataGridPasswordColumn.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\ExtendedDataGrid.Filter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGridColumns\DataGridAutoFilterColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGridColumns\DataGridAutoFilterEnumColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGridColumns\DataGridAutoFilterTextColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGridColumns\DataGridButtonColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGridColumns\DataGridColorColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGridColumns\DataGridFilterColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGridColumns\DataGridFilterTextColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGridColumns\DataGridPasswordColumn.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\EnumComboBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MultipleSelectionListBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\DecimalSlider.cs" />
@@ -44,16 +43,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\IntegerSlider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\IntegerSpin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\NumericBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\Primitives\BindablePasswordBox.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\Primitives\MaskedTextBlock.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\Ribbon\PersistentRibbon.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\Ribbon\RibbonComboBoxEx.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\ToggleSwitch.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\DebugConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\BindablePasswordBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\MaskedTextBlock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\RibbonComboBoxEx.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AutoToggleButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\DescriptionConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\RadioButtonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\ResourceConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\WorkingToImageBallConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\BoolToImageBallConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\BindingHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\EntryAssemblyResourceManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Misc\ApplicationDispatcher.cs" />
@@ -90,7 +87,7 @@
     <Page Include="$(MSBuildThisFileDirectory)Themes\Converter.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Themes\ToggleSwitch.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Themes\AutoToggleButton.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)View\DialogButtonsView.xaml">

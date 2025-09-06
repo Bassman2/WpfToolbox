@@ -1,22 +1,41 @@
 ﻿namespace WpfToolbox.Controls;
 
+/// <summary>
+/// A WPF ComboBox that displays the values of a specified enum type.
+/// Supports displaying descriptions, localized resources, and images for each enum value using custom attributes.
+/// </summary>
 public class EnumComboBox : ComboBox
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EnumComboBox"/> class.
+    /// Sets the <see cref="SelectedValuePath"/> to "Value".
+    /// </summary>
     public EnumComboBox()
     {
         SelectedValuePath = "Value";
     }
 
+    /// <summary>
+    /// Identifies the <see cref="EnumType"/> dependency property.
+    /// </summary>
     public static readonly DependencyProperty EnumTypeProperty =
         DependencyProperty.Register("EnumType", typeof(Type), typeof(EnumComboBox),
             new FrameworkPropertyMetadata(null, new PropertyChangedCallback((o, e) => ((EnumComboBox)o).OnEnumTypePropertyChanged(e))));
 
+        /// <summary>
+    /// Gets or sets the enum type to display in the ComboBox.
+    /// </summary>
     public Type EnumType
     {
         get => (Type)GetValue(EnumTypeProperty);
         set => SetValue(EnumTypeProperty, value);
     }
     
+    /// <summary>
+    /// Handles changes to the <see cref="EnumType"/> property.
+    /// Sets up the ComboBox items and item template based on the enum's attributes.
+    /// </summary>
+    /// <param name="e">The event data.</param>
     private void OnEnumTypePropertyChanged(DependencyPropertyChangedEventArgs e)
     {
         Type enumType = (Type)e.NewValue;
@@ -60,8 +79,17 @@ public class EnumComboBox : ComboBox
         this.ItemsSource = enumValues.Select(i => new EnumerationMember(i)).ToList();
     }
 
-    public class EnumerationMember 
+    /// <summary>
+    /// Represents a single enum value with its associated description and image.
+    /// Used as the item type for the ComboBox.
+    /// </summary>
+    private class EnumerationMember 
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EnumerationMember"/> class.
+        /// Extracts description and image information from the enum value's attributes.
+        /// </summary>
+        /// <param name="item">The enum value.</param>
         public EnumerationMember(object item)
         {
             Value = item;
@@ -86,10 +114,19 @@ public class EnumComboBox : ComboBox
             }
         }
 
+        /// <summary>
+        /// Gets the enum value.
+        /// </summary>
         public object Value { get; }
 
+        /// <summary>
+        /// Gets the description to display for the enum value.
+        /// </summary>
         public string Description { get; }
 
+        /// <summary>
+        /// Gets the image source associated with the enum value, if any.
+        /// </summary>
         public string Image { get; } = string.Empty;
     }
 }

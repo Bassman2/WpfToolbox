@@ -1,8 +1,4 @@
-﻿using System.Globalization;
-
-namespace WpfToolbox.Controls;
-
-// https://www.codeproject.com/Articles/315461/A-WPF-Spinner-Custom-Control
+﻿namespace WpfToolbox.Controls;
 
 // used for themes selection
 public abstract class NumericSlider<T> : NumericBase<T> where T : IFormattable

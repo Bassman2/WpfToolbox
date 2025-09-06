@@ -1,7 +1,14 @@
 ﻿namespace WpfToolbox.Misc;
 
+/// <summary>
+/// Provides utility methods for launching external processes, opening browsers, file explorers, help files, and running shell commands.
+/// </summary>
 public static class Tools
 {
+    /// <summary>
+    /// Opens the specified URL in the default web browser.
+    /// </summary>
+    /// <param name="url">The URL to open.</param>
     public static void OpenBrowser(string url)
     {
         try
@@ -17,6 +24,10 @@ public static class Tools
         }
     }
 
+    /// <summary>
+    /// Opens the specified path in the system file explorer.
+    /// </summary>
+    /// <param name="url">The file or folder path to open.</param>
     public static void OpenExplorer(string url)
     {
         try
@@ -32,6 +43,10 @@ public static class Tools
         }
     }
 
+    /// <summary>
+    /// Opens a help file (.chm) if it exists, or shows an error message if not found.
+    /// </summary>
+    /// <param name="filePath">The path to the help file. If null, uses the entry assembly's .chm file.</param>
     public static void OpenHelp(string? filePath = null)
     {
         filePath ??= System.IO.Path.ChangeExtension(Assembly.GetEntryAssembly()!.Location, ".chm");
@@ -45,6 +60,11 @@ public static class Tools
         }
     }
 
+    /// <summary>
+    /// Runs a shell command using cmd.exe and throws an exception if the command fails.
+    /// </summary>
+    /// <param name="cmd">The command to execute.</param>
+    /// <param name="workingDirectory">The working directory for the command (currently not used).</param>
     public static void RunCommand(string cmd, string? workingDirectory = null)
     {
         string error = string.Empty;
@@ -56,9 +76,9 @@ public static class Tools
         process.StartInfo.Arguments = $"/C {cmd}";
         process.StartInfo.RedirectStandardOutput = true;
         process.StartInfo.RedirectStandardError = true;
-        //process.StartInfo.WorkingDirectory = workingDirectory;
+        process.StartInfo.WorkingDirectory = workingDirectory;
         process.OutputDataReceived += (s, e) => Debug.WriteLine(e.Data);
-        process.ErrorDataReceived += (s, e) => error += e.Data;
+        process.ErrorDataReceived += (s, e) => error += e.Data + Environment.NewLine;
         process.Start();
         process.BeginOutputReadLine();
         process.BeginErrorReadLine();

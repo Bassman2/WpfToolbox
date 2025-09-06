@@ -3,14 +3,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:c="clr-namespace:WpfToolbox.Controls">
 
-    <Style TargetType="c:ToggleSwitch" >
+    <Style TargetType="c:AutoToggleButton" >
 
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="BorderThickness" Value="0.8"/>
         <Setter Property="BorderBrush" Value="Black"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="c:ToggleSwitch" >
+                <ControlTemplate TargetType="c:AutoToggleButton" >
                     <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3" >
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>

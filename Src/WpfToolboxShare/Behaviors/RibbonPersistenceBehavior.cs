@@ -1,13 +1,19 @@
-﻿namespace WpfToolbox.Controls;
+﻿namespace WpfToolbox.Behaviors;
 
-public class PersistentRibbon : Ribbon
+public class RibbonPersistenceBehavior : Behavior<Ribbon>
 {
-    public PersistentRibbon()
-    { }
-
-    protected override void OnInitialized(EventArgs e)
+    protected override void OnAttached()
     {
-        base.OnInitialized(e);
+        AssociatedObject.Initialized += OnInitialized;
+    }
+
+    protected override void OnDetaching()
+    {
+        AssociatedObject.Initialized -= OnInitialized;
+    }
+
+    private void OnInitialized(object? sender, EventArgs e)
+    {
         LoadQatItems();
     }
 
@@ -15,22 +21,22 @@ public class PersistentRibbon : Ribbon
     {
         string text = string.Empty;
 
-        if (this.QuickAccessToolBar != null && this.QuickAccessToolBar.Items != null)
+        if (AssociatedObject.QuickAccessToolBar != null && AssociatedObject.QuickAccessToolBar.Items != null)
         {
-            List<QatItem> qatItems = [.. this.QuickAccessToolBar.Items.Cast<object>().
+            List<QatItem> qatItems = [.. AssociatedObject.QuickAccessToolBar.Items.Cast<object>().
                 Select(i => i as FrameworkElement).Where(e => e != null).
                 Select(e => RibbonControlService.GetQuickAccessToolBarId(e)).Where(id => id != null).
                 Select(q => new QatItem(q.GetHashCode()))];
-                        
+
             List<QatItem> remainingItems = [];
             remainingItems.AddRange(qatItems);
 
             // add -1 to show from application menu
             remainingItems.ForEach(qat => qat.ControlIndices.Add(-1));
-            SaveQatItems(remainingItems, this.ApplicationMenu);
+            SaveQatItems(remainingItems, AssociatedObject.ApplicationMenu);
             remainingItems.ForEach(qat => qat.ControlIndices.Clear());
-            SaveQatItems(remainingItems, this);
-                    
+            SaveQatItems(remainingItems, AssociatedObject);
+
             text = qatItems.Aggregate("", (a, b) => a + "," + b.ControlIndices.ToString()).TrimStart(',');
         }
         Properties.Settings.Default.QuickAccessToolBar = text;
@@ -53,7 +59,7 @@ public class PersistentRibbon : Ribbon
         if (control != null)
         {
             //Add the index control pending
-            remainingItems.ForEach(qat => qat.ControlIndices.Add(controlIndex) );
+            remainingItems.ForEach(qat => qat.ControlIndices.Add(controlIndex));
 
             SaveQatItemsAmongChildrenInner(remainingItems, control);
 
@@ -134,10 +140,10 @@ public class PersistentRibbon : Ribbon
 
         return matched;
     }
-    
+
     private void LoadQatItems()
     {
-        this.QuickAccessToolBar ??= new RibbonQuickAccessToolBar();
+        AssociatedObject.QuickAccessToolBar ??= new RibbonQuickAccessToolBar();
 
         try
         {
@@ -161,12 +167,12 @@ public class PersistentRibbon : Ribbon
                 }
             }
         }
-        catch 
+        catch
         {
 
         }
 
-        this.QuickAccessToolBar.ItemContainerGenerator.ItemsChanged += OnQuickAccessToolBarItemsChanged;
+        AssociatedObject.QuickAccessToolBar.ItemContainerGenerator.ItemsChanged += OnQuickAccessToolBarItemsChanged;
     }
 
     protected void OnQuickAccessToolBarItemsChanged(object sender, ItemsChangedEventArgs e)
@@ -182,7 +188,7 @@ public class PersistentRibbon : Ribbon
             int remainingItemsCount = qatItems.Count(qat => qat.Owner == null);
             List<QatItem> matchedItems = [];
 
-            for (int index = 0; index < this.ApplicationMenu.Items.Count && remainingItemsCount > 0; index++)
+            for (int index = 0; index < AssociatedObject.ApplicationMenu.Items.Count && remainingItemsCount > 0; index++)
             {
                 matchedItems.Clear();
                 matchedItems.AddRange(qatItems.Where(qat => qat.ControlIndices[0] == -1)); //-1 is applicationMenu
@@ -190,7 +196,7 @@ public class PersistentRibbon : Ribbon
                 //remove -1
                 matchedItems.ForEach(qat => qat.ControlIndices.RemoveAt(0));
 
-                object item = this.ApplicationMenu.Items[index];
+                object item = AssociatedObject.ApplicationMenu.Items[index];
                 if (item != null)
                 {
                     if (!IsLeaf(item))
@@ -207,18 +213,18 @@ public class PersistentRibbon : Ribbon
             }
         }
     }
-    
+
     private void SearchInTabs(List<QatItem> qatItems)
     {
         int remainingItemsCount = qatItems.Count(qat => qat.Owner == null);
         List<QatItem> matchedItems = [];
 
-        for (int tabIndex = 0; tabIndex < this.Items.Count && remainingItemsCount > 0; tabIndex++)
+        for (int tabIndex = 0; tabIndex < AssociatedObject.Items.Count && remainingItemsCount > 0; tabIndex++)
         {
             matchedItems.Clear();
             matchedItems.AddRange(qatItems.Where(qat => qat.ControlIndices[0] == tabIndex));
 
-            if (this.Items[tabIndex] is RibbonTab tab)
+            if (AssociatedObject.Items[tabIndex] is RibbonTab tab)
             {
                 LoadQatItemsAmongChildren(matchedItems, 0, tabIndex, tab, ref remainingItemsCount);
             }
@@ -296,7 +302,7 @@ public class PersistentRibbon : Ribbon
             }
         }
     }
-    
+
     private class QatItem
     {
         public QatItem()
@@ -314,7 +320,7 @@ public class PersistentRibbon : Ribbon
 
         public int HashCode { get; set; }
 
-        //Is only for load
+        // only for load
         public Control? Owner { get; set; }
     }
 }
