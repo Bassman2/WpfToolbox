@@ -2,10 +2,24 @@
 
 namespace WpfToolbox.Behaviors;
 
+/// <summary>
+/// A WPF behavior for <see cref="DataGrid"/> that enables users to control the visibility of columns
+/// via a context menu in the column header. The visibility state is persisted using application settings,
+/// allowing user preferences to be restored across sessions.
+/// </summary>
+/// <remarks>
+/// - The context menu is dynamically generated based on the columns in the <see cref="DataGrid"/>.
+/// - The <see cref="ColumnVisibility"/> property stores the visibility state as a bitmask.
+/// - The <see cref="SettingsName"/> property specifies the application setting key for persistence.
+/// </remarks>
 public class ColumnsBehavior : Behavior<DataGrid>
 {
+    /// <summary>
+    /// The context menu displayed in the column header for toggling column visibility.
+    /// </summary>
     private readonly ContextMenu headerContextMenu = new();
 
+    /// <inheritdoc/>
     protected override void OnAttached()
     {
         AssociatedObject.Initialized += OnInitialized;
@@ -15,11 +29,15 @@ public class ColumnsBehavior : Behavior<DataGrid>
         AssociatedObject.ColumnHeaderStyle = headerStyle;
     }
 
+    /// <inheritdoc/>
     protected override void OnDetaching()
     {
         AssociatedObject.Initialized -= OnInitialized;
     }
 
+    /// <summary>
+    /// Handles the <see cref="DataGrid.Initialized"/> event to restore column visibility from settings.
+    /// </summary>
     private void OnInitialized(object? sender, EventArgs e)
     {
         if (SettingsName != null)
@@ -32,21 +50,34 @@ public class ColumnsBehavior : Behavior<DataGrid>
         }
     }
 
+    /// <summary>
+    /// Gets or sets the application settings key used to persist column visibility.
+    /// </summary>
     public string? SettingsName { get; set; } = null;
 
-
+    /// <summary>
+    /// Identifies the <see cref="ColumnVisibility"/> dependency property.
+    /// </summary>
     public static readonly DependencyProperty ColumnVisibilityProperty =
         DependencyProperty.Register("ColumnVisibility", typeof(uint), typeof(ColumnsBehavior),
             new FrameworkPropertyMetadata(uint.MaxValue,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                 new PropertyChangedCallback((d, e) => ((ColumnsBehavior)d).CreateHeaderMenu((uint)e.NewValue))));
 
+    /// <summary>
+    /// Gets or sets the bitmask representing the visibility of each column.
+    /// Each bit corresponds to a column: 1 = visible, 0 = collapsed.
+    /// </summary>
     public uint ColumnVisibility
     {
         get => (uint)GetValue(ColumnVisibilityProperty);
         set => SetValue(ColumnVisibilityProperty, value);
     }
 
+    /// <summary>
+    /// Creates or updates the header context menu based on the current column visibility flags.
+    /// </summary>
+    /// <param name="flags">Bitmask representing column visibility.</param>
     private void CreateHeaderMenu(uint flags)
     {
         uint mask = 1;
@@ -63,6 +94,9 @@ public class ColumnsBehavior : Behavior<DataGrid>
         }
     }
 
+    /// <summary>
+    /// Handles the Unchecked event for a column menu item, hiding the corresponding column.
+    /// </summary>
     private void OnHeaderMenuItemUnchecked(object sender, RoutedEventArgs e)
     {
         if (sender is MenuItem menuItem && menuItem.Tag is DataGridColumn column)
@@ -72,6 +106,9 @@ public class ColumnsBehavior : Behavior<DataGrid>
         UpdateColumnVisibility();
     }
 
+    /// <summary>
+    /// Handles the Checked event for a column menu item, showing the corresponding column.
+    /// </summary>
     private void OnHeaderMenuItemChecked(object sender, RoutedEventArgs e)
     {
         if (sender is MenuItem menuItem && menuItem.Tag is DataGridColumn column)
@@ -81,6 +118,9 @@ public class ColumnsBehavior : Behavior<DataGrid>
         UpdateColumnVisibility();
     }
 
+    /// <summary>
+    /// Updates the <see cref="ColumnVisibility"/> property and persists the state to application settings.
+    /// </summary>
     private void UpdateColumnVisibility()
     {
         uint flags = 0;
@@ -106,16 +146,21 @@ public class ColumnsBehavior : Behavior<DataGrid>
         }
     }
 
-    private void OnHeaderContextMenuOpening(object sender, RoutedEventArgs e)
-    {
-        if (headerContextMenu == null) return;
-        headerContextMenu.Items.Clear();
-        foreach (var column in AssociatedObject.Columns)
-        {
-            headerContextMenu.Items.Add(new MenuItem() { Header = column.Header });
-        }
-    }
 
+    //private void OnHeaderContextMenuOpening(object sender, RoutedEventArgs e)
+    //{
+    //    if (headerContextMenu == null) return;
+    //    headerContextMenu.Items.Clear();
+    //    foreach (var column in AssociatedObject.Columns)
+    //    {
+    //        headerContextMenu.Items.Add(new MenuItem() { Header = column.Header });
+    //    }
+    //}
+
+    /// <summary>
+    /// Retrieves the application's settings instance for persisting column visibility.
+    /// </summary>
+    /// <returns>The <see cref="ApplicationSettingsBase"/> instance, or null if not found.</returns>
     private static ApplicationSettingsBase? GetApplicationSettings()
     {
         return (ApplicationSettingsBase?)System.Reflection.Assembly.GetEntryAssembly()!.GetTypes().FirstOrDefault(t => t.FullName!.EndsWith(".Properties.Settings"))?.GetProperty("Default")?.GetValue(null);

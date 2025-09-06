@@ -1,6 +1,4 @@
-﻿using WpfToolbox.Internal;
-
-namespace WpfToolbox.Converter;
+﻿namespace WpfToolbox.Converter;
 
 [ValueConversion(typeof(object), typeof(string))]
 public class ResourceConverter : IValueConverter

@@ -55,6 +55,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converter\DescriptionConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\RadioButtonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\ResourceConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\WorkingToImageBallConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\BindingHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\EntryAssemblyResourceManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Misc\ApplicationDispatcher.cs" />
@@ -92,5 +93,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="$(MSBuildThisFileDirectory)Images\Copy16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="$(MSBuildThisFileDirectory)Images\BallBlue16.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\BallGrey16.png" />
   </ItemGroup>
 </Project>
