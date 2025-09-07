@@ -3,8 +3,16 @@ using System.Windows.Interop;
 
 namespace WpfToolbox.View;
 
+/// <summary>
+/// A WPF dialog window base class that provides attached properties and helpers for dialog result binding
+/// and dynamic window style manipulation (system menu, minimize, maximize).
+/// </summary>
 public partial class DialogView : Window
 {
+    /// <summary>
+    /// Sets up dialog ownership, startup location, and disables taskbar icon.
+    /// </summary>
+    /// <param name="e">Event arguments.</param>
     protected override void OnInitialized(EventArgs e)
     {
         base.OnInitialized(e);
@@ -21,6 +29,9 @@ public partial class DialogView : Window
 
     #region DialogResult
 
+    /// <summary>
+    /// Attached property for binding a dialog's result to a view model.
+    /// </summary>
     public static readonly DependencyProperty DialogResultProperty =
         DependencyProperty.RegisterAttached(
             "DialogResult",
@@ -36,6 +47,9 @@ public partial class DialogView : Window
         }
     }
 
+    /// <summary>
+    /// Sets the DialogResult attached property.
+    /// </summary>
     public static void SetDialogResult(Window target, bool? value)
     {
         target.SetValue(DialogResultProperty, value);
@@ -61,6 +75,9 @@ public partial class DialogView : Window
 
     const int GWL_STYLE = (-16);
 
+    /// <summary>
+    /// Window style flags for Win32 interop.
+    /// </summary>
     [Flags]
     private enum WindowStyles : uint
     {
@@ -77,7 +94,9 @@ public partial class DialogView : Window
     public const int SWP_NOSIZE = 0x0001;
     public const int SWP_NOZORDER = 0x0004;
 
-
+    /// <summary>
+    /// Adds a window style flag to the specified window.
+    /// </summary>
     private static void AddWindowStyle(Window window, WindowStyles styleToAdd)
     {
         WindowInteropHelper wih = new(window);
@@ -87,6 +106,9 @@ public partial class DialogView : Window
         var __ = NativeMethods.SetWindowPos(wih.Handle, IntPtr.Zero, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOREPOSITION | SWP_NOSIZE | SWP_NOZORDER);
     }
 
+    /// <summary>
+    /// Removes a window style flag from the specified window.
+    /// </summary>
     private static void RemoveWindowStyle(Window window, WindowStyles styleToRemove)
     {
         WindowInteropHelper wih = new(window);
@@ -96,16 +118,25 @@ public partial class DialogView : Window
         var __ = NativeMethods.SetWindowPos(wih.Handle, IntPtr.Zero, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOREPOSITION | SWP_NOSIZE | SWP_NOZORDER);
     }
 
+    /// <summary>
+    /// Gets the value of the ShowMinimize attached property.
+    /// </summary>
     public static bool GetShowMinimize(DependencyObject obj)
     {
         return (bool)obj.GetValue(ShowMinimizeProperty);
     }
 
+    /// <summary>
+    /// Sets the value of the ShowMinimize attached property.
+    /// </summary>
     public static void SetShowMinimize(DependencyObject obj, bool value)
     {
         obj.SetValue(ShowMinimizeProperty, value);
     }
 
+    /// <summary>
+    /// Attached property to control the visibility of the minimize button.
+    /// </summary>
     public static readonly DependencyProperty ShowMinimizeProperty =
         DependencyProperty.RegisterAttached("ShowMinimize", typeof(bool), typeof(DialogView), new UIPropertyMetadata(true, OnShowMinimizeChanged));
 
@@ -125,16 +156,25 @@ public partial class DialogView : Window
         }
     }
 
+    /// <summary>
+    /// Gets the value of the ShowMaximize attached property.
+    /// </summary>
     public static bool GetShowMaximize(DependencyObject obj)
     {
         return (bool)obj.GetValue(ShowMaximizeProperty);
     }
 
+    /// <summary>
+    /// Sets the value of the ShowMaximize attached property.
+    /// </summary>
     public static void SetShowMaximize(DependencyObject obj, bool value)
     {
         obj.SetValue(ShowMaximizeProperty, value);
     }
 
+    /// <summary>
+    /// Attached property to control the visibility of the maximize button.
+    /// </summary>
     public static readonly DependencyProperty ShowMaximizeProperty =
         DependencyProperty.RegisterAttached("ShowMaximize", typeof(bool), typeof(DialogView), new UIPropertyMetadata(true, OnShowMaximizeChanged));
 
@@ -153,15 +193,25 @@ public partial class DialogView : Window
         }
     }
 
+    /// <summary>
+    /// Gets the value of the ShowSystemMenu attached property.
+    /// </summary>
     public static bool GetShowHasSystemMenu(DependencyObject obj)
     {
         return (bool)obj.GetValue(ShowSystemMenuProperty);
     }
 
+    /// <summary>
+    /// Sets the value of the ShowSystemMenu attached property.
+    /// </summary>
     public static void SetShowSystemMenu(DependencyObject obj, bool value)
     {
         obj.SetValue(ShowSystemMenuProperty, value);
     }
+
+    /// <summary>
+    /// Attached property to control the visibility of the system menu.
+    /// </summary>
 
     public static readonly DependencyProperty ShowSystemMenuProperty =
         DependencyProperty.RegisterAttached("ShowSystemMenu", typeof(bool), typeof(DialogView), new UIPropertyMetadata(true, OnShowSystemMenuChanged));
@@ -181,6 +231,9 @@ public partial class DialogView : Window
         }
     }
 
+    /// <summary>
+    /// Gets or sets whether the system menu is shown.
+    /// </summary>
     public bool ShowSystemMenu
     {
         set { SetValue(ShowSystemMenuProperty, value); }
@@ -191,16 +244,6 @@ public partial class DialogView : Window
 
     private static partial class NativeMethods
     {
-        //[DllImport("user32.dll")]
-        //internal static extern UInt32 GetWindowLong(IntPtr hWnd, int nIndex);
-
-        //[DllImport("user32.dll")]
-        //internal static extern int SetWindowLong(IntPtr hWnd, int nIndex, UInt32 dwNewLong);
-
-        //[DllImport("user32.dll")]
-        //[return: MarshalAs(UnmanagedType.Bool)]
-        //internal static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, uint uFlags);
-
         [LibraryImport("user32.dll")]
         internal static partial UInt32 GetWindowLong(IntPtr hWnd, int nIndex);
 

@@ -35,9 +35,7 @@ public class DataGridColumnVisibilityBehavior : Behavior<DataGrid>
         AssociatedObject.Initialized -= OnInitialized;
     }
 
-    /// <summary>
-    /// Handles the <see cref="DataGrid.Initialized"/> event to restore column visibility from settings.
-    /// </summary>
+    
     private void OnInitialized(object? sender, EventArgs e)
     {
         if (SettingsName != null)

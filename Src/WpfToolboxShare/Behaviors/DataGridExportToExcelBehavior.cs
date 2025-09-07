@@ -1,38 +1,65 @@
 ﻿using DocumentFormat.OpenXml.Spreadsheet;
-using Microsoft.Xaml.Behaviors;
 
 namespace WpfToolbox.Behaviors;
 
+/// <summary>
+/// A behavior for WPF DataGrid that enables exporting the grid's content to an Excel file (.xlsx) using OpenXML.
+/// Supports exporting hidden columns and custom sheet names.
+/// </summary>
 public class DataGridExportToExcelBehavior : Behavior<DataGrid>
 {
+    /// <summary>
+    /// Dependency property for the Excel file path to export to.
+    /// Setting this property triggers the export operation.
+    /// </summary>
     public static readonly DependencyProperty ExportToExcelFileProperty =
         DependencyProperty.Register("ExportToExcelFile", typeof(string), typeof(DataGridExportToExcelBehavior), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(
           (d, e) => ((DataGridExportToExcelBehavior)d).OnExportToExcelFileChanged((string)e.NewValue))));
 
+    /// <summary>
+    /// Gets or sets the file path for the Excel export. Setting this property triggers the export.
+    /// </summary>
     public string ExportToExcelFile
     {
         get => (string)GetValue(ExportToExcelFileProperty);
         set => SetValue(ExportToExcelFileProperty, value);
     }
 
+    /// <summary>
+    /// Dependency property to control whether hidden columns are exported.
+    /// </summary>
     public static readonly DependencyProperty ExportHiddenColumnsProperty =
         DependencyProperty.Register("ExportHiddenColumns", typeof(bool), typeof(DataGridExportToExcelBehavior), new FrameworkPropertyMetadata(false));
 
+    /// <summary>
+    /// Gets or sets a value indicating whether hidden columns should be exported.
+    /// </summary>
     public bool ExportHiddenColumns
     {
         get => (bool)GetValue(ExportHiddenColumnsProperty);
         set => SetValue(ExportHiddenColumnsProperty, value);
     }
 
+    /// <summary>
+    /// Dependency property for the Excel sheet name.
+    /// </summary>
     public static readonly DependencyProperty SheetNameProperty =
         DependencyProperty.Register("SheetName", typeof(string), typeof(DataGridExportToExcelBehavior), new FrameworkPropertyMetadata("Sheet"));
 
+    /// <summary>
+    /// Gets or sets the name of the Excel worksheet.
+    /// </summary>
     public string SheetName
     {
         get => (string)GetValue(SheetNameProperty);
         set => SetValue(SheetNameProperty, value);
     }
 
+    /// <summary>
+    /// Handles the export operation when the ExportToExcelFile property changes.
+    /// Creates a new Excel file and writes the DataGrid's content to it.
+    /// </summary>
+    /// <param name="filepath">The file path to export to.</param>
     private void OnExportToExcelFileChanged(string filepath)
     {
 
@@ -91,6 +118,11 @@ public class DataGridExportToExcelBehavior : Behavior<DataGrid>
 
     }
 
+    /// <summary>
+    /// Converts a column number to its corresponding Excel column letter(s).
+    /// </summary>
+    /// <param name="number">The column number (1-based).</param>
+    /// <returns>The Excel column letter(s).</returns>
     public static string ConvertNumberToLetters(int number)
     {
         string result = string.Empty;
@@ -168,6 +200,14 @@ public class DataGridExportToExcelBehavior : Behavior<DataGrid>
     //    return sheetData;
     //}
 
+
+    /// <summary>
+    /// Inserts a cell with the specified value into the given SheetData at the specified column and row.
+    /// </summary>
+    /// <param name="sheetData">The SheetData to insert into.</param>
+    /// <param name="colIndex">The column index (1-based).</param>
+    /// <param name="rowIndex">The row index (1-based).</param>
+    /// <param name="val">The cell value.</param>
     public static void InserCell(SheetData sheetData, uint colIndex, uint rowIndex, string val)
     {
         string columnName = ((char)('@' + (char)(colIndex))).ToString();
