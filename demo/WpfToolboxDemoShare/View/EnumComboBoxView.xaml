@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="WpfToolboxDemo.View.EnumComboBoxView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfToolboxDemo.View"
+             xmlns:vm="clr-namespace:WpfToolboxDemo.ViewModel"
+             d:DataContext="{d:DesignInstance Type=vm:EnumComboBoxViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:EnumComboBoxViewModel/>
+    </UserControl.DataContext>
+    <Grid Margin="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="120"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Content="Enum Name"/>
+        <EnumComboBox Grid.Column="1" Grid.Row="0" SelectedValue="{Binding SelectedEnumName}" EnumType="{x:Type vm:EnumName}" Margin="3"/>
+        <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding SelectedEnumName}" Margin="3" IsReadOnly="True"/>
+        <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding SelectedEnumName}" Margin="3" IsReadOnly="True"/>
+
+        <Label Grid.Column="0" Grid.Row="1" Content="Enum Name + Image"/>
+        <EnumComboBox Grid.Column="1" Grid.Row="1" SelectedValue="{Binding SelectedEnumNameImage}" EnumType="{x:Type vm:EnumNameImage}" Margin="3"/>
+        <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding SelectedEnumNameImage}" Margin="3" IsReadOnly="True"/>
+        <TextBox Grid.Column="3" Grid.Row="1" Text="{Binding SelectedEnumNameImage}" Margin="3" IsReadOnly="True"/>
+
+        <Label Grid.Column="0" Grid.Row="2" Content="Description"/>
+        <EnumComboBox Grid.Column="1" Grid.Row="2" SelectedValue="{Binding SelectedEnumDesc}" EnumType="{x:Type vm:EnumDesc}" Margin="3"/>
+        <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding SelectedEnumDesc}" Margin="3" IsReadOnly="True"/>
+        <TextBox Grid.Column="3" Grid.Row="2" Text="{Binding SelectedEnumDesc, Converter={StaticResource descriptionConverter}}" Margin="3" IsReadOnly="True"/>
+
+        <Label Grid.Column="0" Grid.Row="3" Content="Description + Image"/>
+        <EnumComboBox Grid.Column="1" Grid.Row="3" SelectedValue="{Binding SelectedEnumDescImage}" EnumType="{x:Type vm:EnumDescImage}" Margin="3"/>
+        <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding SelectedEnumDescImage}" Margin="3" IsReadOnly="True"/>
+        <TextBox Grid.Column="3" Grid.Row="3" Text="{Binding SelectedEnumDescImage, Converter={StaticResource descriptionConverter}}" Margin="3" IsReadOnly="True"/>
+
+        <Label Grid.Column="0" Grid.Row="4" Content="Resource"/>
+        <EnumComboBox Grid.Column="1" Grid.Row="4" SelectedValue="{Binding SelectedEnumResc}" EnumType="{x:Type vm:EnumResc}" Margin="3"/>
+        <TextBox Grid.Column="2" Grid.Row="4" Text="{Binding SelectedEnumResc}" Margin="3" IsReadOnly="True"/>
+        <TextBox Grid.Column="3" Grid.Row="4" Text="{Binding SelectedEnumResc, Converter={StaticResource resourceConverter}}" Margin="3" IsReadOnly="True"/>
+
+        <Label Grid.Column="0" Grid.Row="5" Content="Resource + Image"/>
+        <EnumComboBox Grid.Column="1" Grid.Row="5" SelectedValue="{Binding SelectedEnumRescImage}" EnumType="{x:Type vm:EnumRescImage}" Margin="3"/>
+        <TextBox Grid.Column="2" Grid.Row="5" Text="{Binding SelectedEnumRescImage}" Margin="3" IsReadOnly="True"/>
+        <TextBox Grid.Column="3" Grid.Row="5" Text="{Binding SelectedEnumRescImage, Converter={StaticResource resourceConverter}}" Margin="3" IsReadOnly="True"/>
+    </Grid>
+</UserControl>
