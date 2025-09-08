@@ -47,7 +47,7 @@ public class EnumComboBox : ComboBox
         var enumValues = Enum.GetValues(enumType).Cast<object>();
 
         // check if any enum value has the ImageAttribute
-        if (enumValues.Any(item => item.GetFieldInfo().GetCustomAttribute<ImageAttribute>() is not null))
+        if (enumValues.Any(item => item.GetFieldInfo()!.GetCustomAttribute<ImageAttribute>() is not null))
         {
             // Create ItemTemplate for Images and Text
             var template = new DataTemplate() { DataType = typeof(string) };
@@ -94,21 +94,21 @@ public class EnumComboBox : ComboBox
         {
             Value = item;
 
-            FieldInfo fieldInfo = item.GetFieldInfo();
-            if (fieldInfo.GetCustomAttribute<DescriptionAttribute>() is DescriptionAttribute descriptionAttribute)
+            FieldInfo? fieldInfo = item.GetFieldInfo();
+            if (fieldInfo?.GetCustomAttribute<DescriptionAttribute>() is DescriptionAttribute descriptionAttribute)
             {
                 Description = descriptionAttribute.Description;
             }
-            else if (fieldInfo.GetCustomAttribute<ResourceAttribute>() is ResourceAttribute resourceAttribute)
+            else if (fieldInfo?.GetCustomAttribute<ResourceAttribute>() is ResourceAttribute resourceAttribute)
             {
                 Description = EntryAssemblyResourceManager.GetString(resourceAttribute.Name) ?? "";
             }            
             else
             {
-                Description = fieldInfo.Name;
+                Description = fieldInfo?.Name ?? "";
             }
 
-            if (fieldInfo.GetCustomAttribute<ImageAttribute>() is ImageAttribute imageAttribute)
+            if (fieldInfo?.GetCustomAttribute<ImageAttribute>() is ImageAttribute imageAttribute)
             {
                 Image = imageAttribute.Source;
             }
