@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>2ba850ea-e579-4a7f-9b16-8a4072257ee0</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>WpfControlsDemo</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Usings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AutoFilterViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ColumnsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\EnumComboBoxViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\FilterViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NumericViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ToggleSwitchViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\AutoFilterView.xaml.cs">
+      <DependentUpon>AutoFilterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\ColumnsView.xaml.cs">
+      <DependentUpon>ColumnsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnumComboBoxView.xaml.cs">
+      <DependentUpon>EnumComboBoxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\FilterView.xaml.cs">
+      <DependentUpon>FilterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\NumericView.xaml.cs">
+      <DependentUpon>NumericView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\ToggleSwitchView.xaml.cs">
+      <DependentUpon>ToggleSwitchView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)View\AutoFilterView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)View\ColumnsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)View\EnumComboBoxView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)View\FilterView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)View\MainView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)View\NumericView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)View\ToggleSwitchView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Blue.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Grey.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\health-00to19.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\health-20to39.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\health-40to59.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\health-60to79.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\health-80plus.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Info16.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Red.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Yellow.png" />
+  </ItemGroup>
+</Project>

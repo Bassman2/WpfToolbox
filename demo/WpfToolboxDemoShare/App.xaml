@@ -1,0 +1,11 @@
+﻿<Application x:Class="WpfToolboxDemo.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfToolboxDemo"
+             xmlns:conv="clr-namespace:WpfToolbox.Converter;assembly=WpfToolbox"
+             Startup="OnApplicationStartup">
+    <Application.Resources>
+        <conv:DescriptionConverter x:Key="descriptionConverter"/>
+        <conv:ResourceConverter x:Key="resourceConverter"/>
+    </Application.Resources>
+</Application>

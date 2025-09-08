@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="WpfToolboxDemo.View.NumericView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfToolboxDemo.View"
+             xmlns:ctl="clr-namespace:WpfToolbox.Controls;assembly=WpfToolbox"
+             xmlns:vm="clr-namespace:WpfToolboxDemo.ViewModel"
+             d:DataContext="{d:DesignInstance Type=vm:NumericViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:NumericViewModel/>
+    </UserControl.DataContext>
+    <Grid Margin="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="1" Content="Spin"/>
+
+        <Label Grid.Row="1" Grid.Column="0" Content="Integer"/>
+        <!--<TextBox Grid.Row="1" Grid.Column="0" Text="{Binding SliderIntValue, StringFormat={}{0:D}}" Height="18"/>-->
+        <Label Grid.Row="2" Grid.Column="0" Content="Double"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Decimal"/>
+
+        <IntegerSpin Grid.Row="1" Grid.Column="1" Value="{Binding SpinIntValue}" StringFormat="D" Increment="5" Minimum="1" Maximum="100"/>
+        <DoubleSpin Grid.Row="2" Grid.Column="1" Value="{Binding SpinDoubleValue}" StringFormat="N2" Increment="0.5" Minimum="1.0" Maximum="100.0"/>
+        <DecimalSpin Grid.Row="3" Grid.Column="1" Value="{Binding SpinDecimalValue}" StringFormat="N3" Increment="0.5" Minimum="1.0" Maximum="100.0"/>
+
+        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding SpinIntValue, StringFormat={}{0:D}}" Margin="3" IsReadOnly="True"/>
+        <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding SpinDoubleValue, StringFormat={}{0:N2}}" Margin="3" IsReadOnly="True"/>
+        <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding SpinDecimalValue, StringFormat={}{0:N3}}" Margin="3" IsReadOnly="True"/>
+
+        <Label Grid.Row="4" Grid.Column="1" Content="Slider"/>
+
+        <Label Grid.Row="5" Grid.Column="0" Content="Integer"/>
+        <Label Grid.Row="6" Grid.Column="0" Content="Double"/>
+        <Label Grid.Row="7" Grid.Column="0" Content="Decimal"/>
+        
+        <IntegerSlider Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Value="{Binding SliderIntValue}" StringFormat="D" Increment="5" Minimum="1" Maximum="100" />
+        <DoubleSlider Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Value="{Binding SliderDoubleValue}" StringFormat="N2" Increment="0.5" Minimum="1.0" Maximum="100.0"/>
+        <DecimalSlider Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Value="{Binding SliderDecimalValue}" StringFormat="N3" Increment="0.5" Minimum="1.0" Maximum="100.0"/>
+
+        <TextBox Grid.Row="5" Grid.Column="3" Text="{Binding SliderIntValue, StringFormat={}{0:D}}" Margin="3" IsReadOnly="True"/>
+        <TextBox Grid.Row="6" Grid.Column="3" Text="{Binding SliderDoubleValue, StringFormat={}{0:N2}}" Margin="3" IsReadOnly="True"/>
+        <TextBox Grid.Row="7" Grid.Column="3" Text="{Binding SliderDecimalValue, StringFormat={}{0:N3}}" Margin="3" IsReadOnly="True"/>
+
+    </Grid>
+</UserControl>
