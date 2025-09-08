@@ -2,7 +2,7 @@
 
 /// <summary>
 /// Abstract base view model for WPF applications, providing common functionality such as
-/// application title, progress reporting, drag & drop, settings upgrade, and command handling.
+/// application title, progress reporting, drag &amp; drop, settings upgrade, and command handling.
 /// Inherits from <see cref="ObservableValidator"/> for property change notification and validation.
 /// </summary>
 public abstract partial class AppViewModel : ObservableValidator
@@ -169,7 +169,7 @@ public abstract partial class AppViewModel : ObservableValidator
     [ObservableProperty]
     private double progressValue = 0.0;
 
-    // <summary>
+    /// <summary>
     /// Iterates over a list, performing an action for each item and updating progress.
     /// </summary>
     public void ProgressForEach<T>(List<T> list, Action<T> action, double start = 0.0, double size = 1.0)
@@ -288,7 +288,7 @@ public abstract partial class AppViewModel : ObservableValidator
     protected virtual void OnUndo()
     { }
 
-    // <summary>
+    /// <summary>
     /// Determines whether the Redo command can execute.
     /// </summary>
     protected virtual bool OnCanRedo => false;
@@ -305,6 +305,9 @@ public abstract partial class AppViewModel : ObservableValidator
     /// </summary>
     protected virtual bool OnCanOptions => true;
 
+    /// <summary>
+    /// Handles the Options command. Can be overridden in derived classes.
+    /// </summary>
     [RelayCommand(CanExecute = nameof(OnCanOptions))]
     protected virtual void OnOptions()
     { }
@@ -369,7 +372,7 @@ public abstract partial class AppViewModel : ObservableValidator
     }
 
     /// <summary>
-    /// Handles the Closing event. Cancels closing if <see cref="OnClosing"/> returns false.
+    /// Handles the Closing event. Cancels closing if <see cref="OnClosing()"/> returns false.
     /// </summary>
     [RelayCommand]
     private void OnClosing(CancelEventArgs e)

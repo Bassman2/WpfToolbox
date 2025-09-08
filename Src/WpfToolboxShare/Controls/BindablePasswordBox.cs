@@ -18,7 +18,7 @@ public class BindablePasswordBox : Decorator
     }
 
     /// <summary>
-    /// Handles the <see cref="PasswordBox.LostFocus"/> event to update the <see cref="Password"/> property.
+    /// Handles the LostFocus event to update the <see cref="Password"/> property.
     /// </summary>
     private void OnLostFocus(object sender, RoutedEventArgs e)
     {

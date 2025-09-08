@@ -17,7 +17,7 @@
     <RootNamespace>WpfToolboxDoc</RootNamespace>
     <Name>WpfToolboxDoc</Name>
     <!-- SHFB properties -->
-    <FrameworkVersion>Cross-platform (.NET Core/.NET Standard)</FrameworkVersion>
+    <FrameworkVersion>.NET Core/.NET Standard/.NET 5.0+</FrameworkVersion>
     <OutputPath>.\Help\</OutputPath>
     <HtmlHelpName>WpfToolbox</HtmlHelpName>
     <Language>en-US</Language>
@@ -31,7 +31,7 @@
       <Argument Key="maxVersionParts" Value="" xmlns="" />
     </TransformComponentArguments>
     <DocumentationSources>
-      <DocumentationSource sourceFile="..\..\Src\WpfToolbox90\WpfToolbox90.csproj" xmlns="" />
+      <DocumentationSource sourceFile="..\..\Src\WpfToolbox90\WpfToolbox90.csproj" />
     </DocumentationSources>
     <HelpFileFormat>HtmlHelp1</HelpFileFormat>
     <SyntaxFilters>Standard</SyntaxFilters>
@@ -42,8 +42,8 @@
     <IndentHtml>False</IndentHtml>
     <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
     <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
-    <HelpTitle>A Sandcastle Documented Class Library</HelpTitle>
-    <HelpFileVersion>1.0.0.0</HelpFileVersion>
+    <HelpTitle>WPF Toolbox</HelpTitle>
+    <HelpFileVersion>1.1.0.0</HelpFileVersion>
     <NamingMethod>Guid</NamingMethod>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
     <RootNamespaceContainer>False</RootNamespaceContainer>
@@ -77,7 +77,7 @@
     <Folder Include="media" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\VersionHistory\v1.0.0.0.aml" />
+    <None Include="Content\VersionHistory\v1.1.0.0.aml" />
     <None Include="Content\VersionHistory\VersionHistory.aml" />
     <None Include="Content\Welcome.aml" />
   </ItemGroup>

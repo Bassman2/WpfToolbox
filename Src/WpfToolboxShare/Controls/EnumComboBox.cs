@@ -8,7 +8,7 @@ public class EnumComboBox : ComboBox
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="EnumComboBox"/> class.
-    /// Sets the <see cref="SelectedValuePath"/> to "Value".
+    /// Sets the <see cref="Selector.SelectedValuePath"/> to "Value".
     /// </summary>
     public EnumComboBox()
     {

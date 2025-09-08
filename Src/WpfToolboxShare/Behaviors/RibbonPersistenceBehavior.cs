@@ -1,22 +1,42 @@
 ﻿namespace WpfToolbox.Behaviors;
 
+/// <summary>
+/// Behavior that enables persistence of the Quick Access Toolbar (QAT) state for a Ribbon control.
+/// Handles saving and loading of QAT items to application settings, allowing user customizations to be retained across sessions.
+/// </summary>
 public class RibbonPersistenceBehavior : Behavior<Ribbon>
 {
+    /// <summary>
+    /// Called when the behavior is attached to a Ribbon control.
+    /// Subscribes to the Initialized event to trigger QAT loading.
+    /// </summary>
     protected override void OnAttached()
     {
         AssociatedObject.Initialized += OnInitialized;
     }
 
+    /// <summary>
+    /// Called when the behavior is detached from a Ribbon control.
+    /// Unsubscribes from the Initialized event.
+    /// </summary>
     protected override void OnDetaching()
     {
         AssociatedObject.Initialized -= OnInitialized;
     }
 
+    /// <summary>
+    /// Handles the Ribbon's Initialized event and loads QAT items from settings.
+    /// </summary>
     private void OnInitialized(object? sender, EventArgs e)
     {
         LoadQatItems();
     }
 
+    /// <summary>
+    /// Saves the current state of the Quick Access Toolbar (QAT) items to application settings.
+    /// Serializes the QAT item structure, including their positions in the Ribbon and Application Menu,
+    /// so that user customizations can be restored in future sessions.
+    /// </summary>
     private void SaveQatItems()
     {
         string text = string.Empty;
@@ -43,6 +63,11 @@ public class RibbonPersistenceBehavior : Behavior<Ribbon>
         Properties.Settings.Default.Save();
     }
 
+    /// <summary>
+    /// Recursively saves QAT items for a given ItemsControl and its children.
+    /// </summary>
+    /// <param name="remainingItems">List of QAT items to process.</param>
+    /// <param name="itemsControl">The ItemsControl to traverse.</param>
     private void SaveQatItems(List<QatItem> remainingItems, ItemsControl itemsControl)
     {
         if (itemsControl != null && itemsControl.Items != null)
@@ -54,6 +79,12 @@ public class RibbonPersistenceBehavior : Behavior<Ribbon>
         }
     }
 
+    /// <summary>
+    /// Processes a single control and its children for QAT item saving.
+    /// </summary>
+    /// <param name="remainingItems">List of QAT items to process.</param>
+    /// <param name="control">The control to process.</param>
+    /// <param name="controlIndex">The index of the control within its parent.</param>
     private void SaveQatItemsAmongChildren(List<QatItem> remainingItems, object control, int controlIndex)
     {
         if (control != null)
@@ -68,6 +99,11 @@ public class RibbonPersistenceBehavior : Behavior<Ribbon>
         }
     }
 
+    /// <summary>
+    /// Recursively traverses the logical and visual tree to save QAT items.
+    /// </summary>
+    /// <param name="remainingItems">List of QAT items to process.</param>
+    /// <param name="parent">The parent object to traverse.</param>
     private void SaveQatItemsAmongChildrenInner(List<QatItem> remainingItems, object parent)
     {
         SaveQatItemsIfMatchesControl(remainingItems, parent);
@@ -103,6 +139,11 @@ public class RibbonPersistenceBehavior : Behavior<Ribbon>
         }
     }
 
+    /// <summary>
+    /// Determines if the given element is a leaf node (cannot have children) in the Ribbon structure.
+    /// </summary>
+    /// <param name="element">The element to check.</param>
+    /// <returns>True if the element is a leaf node; otherwise, false.</returns>
     private static bool IsLeaf(object element)
     {
         if ((element is RibbonButton) ||
@@ -125,6 +166,12 @@ public class RibbonPersistenceBehavior : Behavior<Ribbon>
         return false;
     }
 
+    /// <summary>
+    /// Removes QAT items from the list if they match the given control.
+    /// </summary>
+    /// <param name="remainingItems">List of QAT items to process.</param>
+    /// <param name="control">The control to check for a match.</param>
+    /// <returns>True if any items were matched and removed; otherwise, false.</returns>
     private static bool SaveQatItemsIfMatchesControl(List<QatItem> remainingItems, object control)
     {
         bool matched = false;
@@ -141,6 +188,9 @@ public class RibbonPersistenceBehavior : Behavior<Ribbon>
         return matched;
     }
 
+    /// <summary>
+    /// Loads QAT items from application settings and restores them to the Ribbon.
+    /// </summary>
     private void LoadQatItems()
     {
         AssociatedObject.QuickAccessToolBar ??= new RibbonQuickAccessToolBar();
@@ -175,11 +225,18 @@ public class RibbonPersistenceBehavior : Behavior<Ribbon>
         AssociatedObject.QuickAccessToolBar.ItemContainerGenerator.ItemsChanged += OnQuickAccessToolBarItemsChanged;
     }
 
+    /// <summary>
+    /// Handles changes to the Quick Access Toolbar items and triggers saving.
+    /// </summary>
     protected void OnQuickAccessToolBarItemsChanged(object sender, ItemsChangedEventArgs e)
     {
         SaveQatItems();
     }
 
+    /// <summary>
+    /// Searches for QAT items in the Ribbon's Application Menu and matches them to their saved positions.
+    /// </summary>
+    /// <param name="qatItems">List of QAT items to match.</param>
     private void SearchInApplicationMenu(List<QatItem> qatItems)
     {
         if (qatItems != null)
@@ -214,6 +271,10 @@ public class RibbonPersistenceBehavior : Behavior<Ribbon>
         }
     }
 
+    /// <summary>
+    /// Searches for QAT items in the Ribbon's tabs and matches them to their saved positions.
+    /// </summary>
+    /// <param name="qatItems">List of QAT items to match.</param>
     private void SearchInTabs(List<QatItem> qatItems)
     {
         int remainingItemsCount = qatItems.Count(qat => qat.Owner == null);
@@ -231,6 +292,14 @@ public class RibbonPersistenceBehavior : Behavior<Ribbon>
         }
     }
 
+    /// <summary>
+    /// Recursively traverses the logical and visual tree to match and restore QAT items.
+    /// </summary>
+    /// <param name="previouslyMatchedItems">List of QAT items matched so far.</param>
+    /// <param name="matchLevel">Current depth in the tree.</param>
+    /// <param name="_">Control index (unused).</param>
+    /// <param name="parent">Parent object to traverse.</param>
+    /// <param name="remainingItemsCount">Reference to the count of unmatched items.</param>
     private static void LoadQatItemsAmongChildren(List<QatItem> previouslyMatchedItems, int matchLevel, int _ /*controlIndex*/, object parent, ref int remainingItemsCount)
     {
         if (previouslyMatchedItems.Count == 0)
@@ -283,6 +352,15 @@ public class RibbonPersistenceBehavior : Behavior<Ribbon>
         }
     }
 
+    /// <summary>
+    /// Matches a QAT item to a control at a specific tree level and updates its owner if matched.
+    /// </summary>
+    /// <param name="previouslyMatchedItems">List of QAT items matched so far.</param>
+    /// <param name="matchedItems">List to collect further matched items.</param>
+    /// <param name="matchLevel">Current depth in the tree.</param>
+    /// <param name="controlIndex">Index of the control within its parent.</param>
+    /// <param name="control">The control to check for a match.</param>
+    /// <param name="remainingItemsCount">Reference to the count of unmatched items.</param>
     private static void LoadQatItemIfMatchesControl(List<QatItem> previouslyMatchedItems, List<QatItem> matchedItems, int matchLevel, int controlIndex, object control, ref int remainingItemsCount)
     {
         for (int qatIndex = 0; qatIndex < previouslyMatchedItems.Count; qatIndex++)
@@ -303,24 +381,44 @@ public class RibbonPersistenceBehavior : Behavior<Ribbon>
         }
     }
 
+    /// <summary>
+    /// Represents a Quick Access Toolbar (QAT) item for persistence.
+    /// Stores the item's position in the Ribbon structure and its unique hash code.
+    /// </summary>
     private class QatItem
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QatItem"/> class.
+        /// </summary>
         public QatItem()
         {
             this.ControlIndices = [];
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QatItem"/> class with a hash code.
+        /// </summary>
+        /// <param name="hashCode">The unique hash code for the QAT item.</param>
         public QatItem(int hashCode)
             : this()
         {
             this.HashCode = hashCode;
         }
 
+        /// <summary>
+        /// Gets or sets the collection of indices representing the item's position in the Ribbon structure.
+        /// </summary>
         public Int32Collection ControlIndices { get; set; }
 
+        /// <summary>
+        /// Gets or sets the unique hash code for the QAT item.
+        /// </summary>
         public int HashCode { get; set; }
 
-        // only for load
+        /// <summary>
+        /// Gets or sets the owner control for the QAT item (used during loading).
+        /// </summary>
+        // <remark>only for load</remark>
         public Control? Owner { get; set; }
     }
 }

@@ -13,7 +13,7 @@ public class AutoToggleButton : ToggleButton
     }
 
     /// <summary>
-    /// Handles the toggle action by inverting the <see cref="IsChecked"/> state.
+    /// Handles the toggle action by inverting the <see cref="ToggleButton.IsChecked"/> state.
     /// </summary>
     protected override void OnToggle()
     {

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Topics>
-  <Topic id="fd721b09-0549-4188-ab06-bb67edf032b2" visible="True" isDefault="true" isSelected="true" title="Welcome to the [TODO: Add project name]">
+  <Topic id="fd721b09-0549-4188-ab06-bb67edf032b2" visible="True" isDefault="true" isSelected="true" title="Welcome to the WPF Toolkit">
     <HelpKeywords>
       <HelpKeyword index="K" term="Welcome" />
     </HelpKeywords>
@@ -9,9 +9,9 @@
     <HelpKeywords>
       <HelpKeyword index="K" term="version, history" />
     </HelpKeywords>
-    <Topic id="fc7d6bd5-28f6-4c1d-b469-ff60c0a19125" visible="True" title="Version 1.0.0.0">
+    <Topic id="fc7d6bd5-28f6-4c1d-b469-ff60c0a19125" visible="True" title="Version 1.1.0.0">
       <HelpKeywords>
-        <HelpKeyword index="K" term="version, 1.0.0.0" />
+        <HelpKeyword index="K" term="version, 1.1.0.0" />
       </HelpKeywords>
     </Topic>
   </Topic>

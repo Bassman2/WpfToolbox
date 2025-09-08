@@ -72,7 +72,7 @@ public class RibbonComboBoxEx : RibbonComboBox
     /// </summary>
     public GridLength LabelWidth { get; set; }
 
-    // <summary>
+    /// <summary>
     /// Identifies the <see cref="SelectedItem"/> dependency property.
     /// </summary>
     public static readonly DependencyProperty SelectedItemProperty =

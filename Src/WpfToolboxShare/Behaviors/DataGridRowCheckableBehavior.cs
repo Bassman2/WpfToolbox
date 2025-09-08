@@ -1,7 +1,7 @@
 ﻿namespace WpfToolbox.Behaviors;
 
-public class DataGridRowCheckableBehavior : Behavior<DataGrid>
-{
+//public class DataGridRowCheckableBehavior : Behavior<DataGrid>
+//{
     //    private ObservableCollection<CheckViewModel> list;
     //    private IEnumerable availables;
     //    private IEnumerable checkedItems;
@@ -199,4 +199,4 @@ public class DataGridRowCheckableBehavior : Behavior<DataGrid>
     //    //{
     //    //    return this.Item.GetHashCode();
     //    //}
-}
+//}

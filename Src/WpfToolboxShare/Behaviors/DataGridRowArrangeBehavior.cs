@@ -1,11 +1,26 @@
 ﻿namespace WpfToolbox.Behaviors;
 
+/// <summary>
+/// Behavior that enables drag-and-drop row reordering and editing state tracking for a DataGrid.
+/// Handles mouse and drag events to allow users to rearrange rows interactively.
+/// </summary>
 public class DataGridRowArrangeBehavior : Behavior<DataGrid>
 {
+    /// <summary>
+    /// Gets or sets a value indicating whether a cell is currently being edited.
+    /// Used to prevent drag operations during editing.
+    /// </summary>
     public bool IsEditing { get; set; }
+
+    /// <summary>
+    /// Stores the item that is the target of a drag-and-drop operation.
+    /// </summary>
     private object? targetItem;
 
 
+    /// <summary>
+    /// Attaches event handlers for drag-and-drop and editing events when the behavior is attached to a DataGrid.
+    /// </summary>
     protected override void OnAttached()
     {
         //AssociatedObject.Initialized += OnInitialized;
@@ -21,6 +36,9 @@ public class DataGridRowArrangeBehavior : Behavior<DataGrid>
 
     }
 
+    /// <summary>
+    /// Detaches event handlers when the behavior is removed from the DataGrid.
+    /// </summary>
     /// <inheritdoc/>
     protected override void OnDetaching()
     {
@@ -39,16 +57,26 @@ public class DataGridRowArrangeBehavior : Behavior<DataGrid>
     //{
     //}
 
+    /// <summary>
+    /// Sets the editing state to true when a cell edit begins.
+    /// </summary>
     protected void OnBeginningEdit(object? sender, DataGridBeginningEditEventArgs e)
     {
         this.IsEditing = true;
     }
 
+    /// <summary>
+    /// Sets the editing state to false when a cell edit ends.
+    /// </summary>
     protected void OnCellEditEnding(object? sender, DataGridCellEditEndingEventArgs e)
     {
         this.IsEditing = false;
     }
 
+    /// <summary>
+    /// Gets the actual width of the DataGrid's cells panel using reflection.
+    /// Used to determine if the mouse is over the cell area (not scrollbars) during drag.
+    /// </summary>
     public double CellsPanelActualWidth
     {
         get
@@ -59,6 +87,9 @@ public class DataGridRowArrangeBehavior : Behavior<DataGrid>
         }
     }
 
+    /// <summary>
+    /// Initiates a drag-and-drop operation for row reordering if the left mouse button is pressed and not editing.
+    /// </summary>
     protected void OnMouseMove(object? sender, MouseEventArgs e)
     {
         if (sender is DataGrid dataGrid && !this.IsEditing)
@@ -106,6 +137,10 @@ public class DataGridRowArrangeBehavior : Behavior<DataGrid>
         }
     }
 
+    /// <summary>
+    /// Handles the DragEnter event to determine if the drag target is a valid DataGridRow.
+    /// Disables drop if the target is not a valid row or is the new item placeholder.
+    /// </summary>
     protected void OnDragEnter(object? sender, DragEventArgs e)
     {
         DataGridRow? dataGridRow = FindVisualParent<DataGridRow>((UIElement)e.OriginalSource);
@@ -116,6 +151,10 @@ public class DataGridRowArrangeBehavior : Behavior<DataGrid>
         e.Handled = true;
     }
 
+    /// <summary>
+    /// Handles the DragLeave event to determine if the drag target is a valid DataGridRow.
+    /// Disables drop if the target is not a valid row or is the new item placeholder.
+    /// </summary>
     protected void OnDragLeave(object? sender, DragEventArgs e)
     {
         DataGridRow? dataGridRow = FindVisualParent<DataGridRow>((UIElement)e.OriginalSource);
@@ -125,6 +164,11 @@ public class DataGridRowArrangeBehavior : Behavior<DataGrid>
         }
         e.Handled = true;
     }
+
+    /// <summary>
+    /// Handles the DragOver event to determine if the drag target is a valid DataGridRow.
+    /// Disables drop if the target is not a valid row or is the new item placeholder.
+    /// </summary>
     protected void OnDragOver(object? sender, DragEventArgs e)
     {
 
@@ -136,6 +180,9 @@ public class DataGridRowArrangeBehavior : Behavior<DataGrid>
         e.Handled = true;
     }
 
+    /// <summary>
+    /// Handles the Drop event to set the target item for row reordering if the drop target is valid.
+    /// </summary>
     protected void OnDrop(object? sender, DragEventArgs e)
     {
 
@@ -153,6 +200,12 @@ public class DataGridRowArrangeBehavior : Behavior<DataGrid>
 
     #region UI Helper
 
+    /// <summary>
+    /// Finds the first visual parent of the specified type for a given UIElement.
+    /// </summary>
+    /// <typeparam name="T">The type of parent to search for.</typeparam>
+    /// <param name="element">The starting UIElement.</param>
+    /// <returns>The first parent of type T, or null if not found.</returns>
     public static T? FindVisualParent<T>(UIElement element) where T : UIElement
     {
         UIElement? parent = element;
@@ -169,6 +222,9 @@ public class DataGridRowArrangeBehavior : Behavior<DataGrid>
 
     #endregion
 
+    /// <summary>
+    /// Handles the AddingNewItem event to create a new instance of the item type for the DataGrid.
+    /// </summary>
     protected void OnAddingNewItem(object? sender, AddingNewItemEventArgs e)
     {
         if (sender is DataGrid dataGrid)

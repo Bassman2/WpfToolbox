@@ -1,11 +1,26 @@
 ﻿namespace WpfToolbox.Controls;
 
+/// <summary>
+/// Abstract base class for a DataGrid column with filter functionality.
+/// Provides a ComboBox in the column header for filtering rows.
+/// </summary>
 public abstract class DataGridFilterColumn : DataGridTextColumn
 {
+    // Reference to the ComboBox used for filtering in the header.
     private ComboBox? filterComboBox;
+
+    /// <summary>
+    /// List of filter items displayed in the ComboBox for filtering the DataGrid column.
+    /// </summary>
     protected List<FilterItem>? filters;
+
+    // Special filter item representing the "All" option.
     private readonly FilterItem allFilter = new();
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DataGridFilterColumn"/> class.
+    /// Sets up the header template with a TextBlock and a ComboBox for filtering.
+    /// </summary>
     public DataGridFilterColumn()
     {
         IsReadOnly = true;
@@ -34,6 +49,10 @@ public abstract class DataGridFilterColumn : DataGridTextColumn
         HeaderTemplate = headerTemplate;
     }
 
+    /// <summary>
+    /// Handler for the ComboBox Loaded event.
+    /// Sets up the item template and populates the filter items.
+    /// </summary>
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
         filterComboBox = (ComboBox)sender;
@@ -51,6 +70,10 @@ public abstract class DataGridFilterColumn : DataGridTextColumn
         FillFilters();
     }
 
+    /// <summary>
+    /// Handles the Checked, Unchecked, and Indeterminate events for filter CheckBoxes.
+    /// Updates the filter state and the "All" filter accordingly.
+    /// </summary>
     protected virtual void OnChecked(object sender, RoutedEventArgs e)
     {
         FilterItem fvm = (FilterItem)((CheckBox)sender).DataContext;
@@ -89,6 +112,10 @@ public abstract class DataGridFilterColumn : DataGridTextColumn
         }
     }
 
+    /// <summary>
+    /// Called when the column's binding changes.
+    /// Sets a DescriptionConverter for the new binding.
+    /// </summary>
     protected override void OnBindingChanged(BindingBase oldBinding, BindingBase newBinding)
     {
         if (newBinding != null && newBinding is Binding binding)
@@ -98,6 +125,9 @@ public abstract class DataGridFilterColumn : DataGridTextColumn
         base.OnBindingChanged(oldBinding, newBinding);
     }
 
+    /// <summary>
+    /// Populates the ComboBox with filter items, including the "All" filter.
+    /// </summary>
     protected void FillFilters()
     {
         if (filterComboBox != null && filters != null)
@@ -106,6 +136,10 @@ public abstract class DataGridFilterColumn : DataGridTextColumn
         }
     }
 
+    /// <summary>
+    /// Represents a filter item for the filter ComboBox.
+    /// Supports different constructors for various filter types.
+    /// </summary>
     [DebuggerDisplay("FilterItem {Name}")]
     protected class FilterItem : INotifyPropertyChanged
     {
@@ -125,8 +159,8 @@ public abstract class DataGridFilterColumn : DataGridTextColumn
         public FilterItem(object item)
         {
             FieldInfo? fieldInfo = item.GetType().GetField(item.ToString()!);
-            this.Name = fieldInfo!.GetCustomAttribute<DescriptionAttribute>()?.Description ?? item.ToString();
-            this.Value = (int)item;
+            this.Name = fieldInfo?.GetCustomAttribute<DescriptionAttribute>()?.Description ?? item?.ToString() ?? "";
+            this.Value = (int)(item ?? 0);
             this.IsChecked = true;
         }
 
@@ -150,15 +184,31 @@ public abstract class DataGridFilterColumn : DataGridTextColumn
             this.IsChecked = true;
         }
 
+        /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        /// <summary>
+        /// Gets a value indicating whether this filter item is the "All" filter.
+        /// </summary>
         public bool IsAll { get; } = false;
 
+        /// <summary>
+        /// Gets the value associated with this filter item.
+        /// </summary>
         public object? Value { get; }
 
-        public string? Name { get; }
+        /// <summary>
+        /// Gets or sets the display name of the filter item.
+        /// </summary>
+        public string Name { get; set; }
 
         private bool? isChecked;
+
+        /// <summary>
+        /// Gets or sets whether this filter item is checked (selected).
+        /// </summary>
         public bool? IsChecked
         {
             get => isChecked;
@@ -173,9 +223,19 @@ public abstract class DataGridFilterColumn : DataGridTextColumn
         }
     }
 
+    /// <summary>
+    /// Interface for custom filter items.
+    /// </summary>
     public interface IFilterItem
     {
+        /// <summary>
+        /// Gets or sets the display name of the filter item.
+        /// </summary>
         string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value associated with the filter item.
+        /// </summary>
         int Value { get; set; }
     }
 }
