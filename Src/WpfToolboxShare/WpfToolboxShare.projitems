@@ -11,6 +11,8 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\RibbonPersistenceBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\StoreBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\StringListToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IContextMenu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFilterItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\AttributeHelper.cs" />
