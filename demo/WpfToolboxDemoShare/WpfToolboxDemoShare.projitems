@@ -6,7 +6,7 @@
     <SharedGUID>2ba850ea-e579-4a7f-9b16-8a4072257ee0</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>WpfControlsDemo</Import_RootNamespace>
+    <Import_RootNamespace>WpfToolboxDemo</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Usings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AutoFilterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ColumnsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\DataGridColumnVisibilityBehaviorViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\EnumComboBoxViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\FilterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NumericViewModel.cs" />
@@ -25,6 +26,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\ColumnsView.xaml.cs">
       <DependentUpon>ColumnsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\DataGridColumnVisibilityBehaviorView.xaml.cs">
+      <DependentUpon>DataGridColumnVisibilityBehaviorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\EnumComboBoxView.xaml.cs">
       <DependentUpon>EnumComboBoxView.xaml</DependentUpon>
@@ -53,6 +57,10 @@
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)View\ColumnsView.xaml">
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)View\DataGridColumnVisibilityBehaviorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)View\EnumComboBoxView.xaml">
       <SubType>Designer</SubType>

@@ -1,6 +1,4 @@
-﻿using Microsoft.Xaml.Behaviors;
-
-namespace WpfToolbox.Behaviors;
+﻿namespace WpfToolbox.Behaviors;
 
 /// <summary>
 /// A WPF behavior for <see cref="DataGrid"/> that enables users to control the visibility of columns
@@ -10,9 +8,9 @@ namespace WpfToolbox.Behaviors;
 /// <remarks>
 /// - The context menu is dynamically generated based on the columns in the <see cref="DataGrid"/>.
 /// - The <see cref="ColumnVisibility"/> property stores the visibility state as a bitmask.
-/// - The <see cref="SettingsName"/> property specifies the application setting key for persistence.
+/// - The <see cref="StoreBehavior{T}.SettingsName"/> property specifies the application setting key for persistence.
 /// </remarks>
-public class DataGridColumnVisibilityBehavior : Behavior<DataGrid>
+public class DataGridColumnVisibilityBehavior : StoreBehavior<DataGrid> //Behavior<DataGrid>
 {
     /// <summary>
     /// The context menu displayed in the column header for toggling column visibility.
@@ -38,20 +36,22 @@ public class DataGridColumnVisibilityBehavior : Behavior<DataGrid>
     
     private void OnInitialized(object? sender, EventArgs e)
     {
-        if (SettingsName != null)
-        {
-            var settings = GetApplicationSettings();
-            if (settings != null && settings.Properties.Cast<System.Configuration.SettingsProperty>().Any(p => p.Name == SettingsName))
-            {
-                ColumnVisibility = (uint)(settings[SettingsName] ?? uint.MaxValue);
-            }
-        }
+        //if (SettingsName != null)
+        //{
+        //    var settings = GetApplicationSettings();
+        //    if (settings != null && settings.Properties.Cast<System.Configuration.SettingsProperty>().Any(p => p.Name == SettingsName))
+        //    {
+        //        ColumnVisibility = (uint)(settings[SettingsName] ?? uint.MaxValue);
+        //    }
+        //}
+
+        ColumnVisibility = GetSettingsValue<uint>(uint.MaxValue);
     }
 
-    /// <summary>
-    /// Gets or sets the application settings key used to persist column visibility.
-    /// </summary>
-    public string? SettingsName { get; set; } = null;
+    ///// <summary>
+    ///// Gets or sets the application settings key used to persist column visibility.
+    ///// </summary>
+    //public string? SettingsName { get; set; } = null;
 
     /// <summary>
     /// Identifies the <see cref="ColumnVisibility"/> dependency property.
@@ -133,15 +133,16 @@ public class DataGridColumnVisibilityBehavior : Behavior<DataGrid>
         }
         ColumnVisibility = flags;
 
-        if (SettingsName != null)
-        {
-            var settings = GetApplicationSettings();
-            if (settings != null && settings.Properties.Cast<System.Configuration.SettingsProperty>().Any(p => p.Name == SettingsName))
-            {
-                settings[SettingsName] = flags;
-                settings.Save();
-            }
-        }
+        //if (SettingsName != null)
+        //{
+        //    var settings = GetApplicationSettings();
+        //    if (settings != null && settings.Properties.Cast<System.Configuration.SettingsProperty>().Any(p => p.Name == SettingsName))
+        //    {
+        //        settings[SettingsName] = flags;
+        //        settings.Save();
+        //    }
+        //}
+        SetSettingsValue(flags);
     }
 
 
@@ -155,12 +156,12 @@ public class DataGridColumnVisibilityBehavior : Behavior<DataGrid>
     //    }
     //}
 
-    /// <summary>
-    /// Retrieves the application's settings instance for persisting column visibility.
-    /// </summary>
-    /// <returns>The <see cref="ApplicationSettingsBase"/> instance, or null if not found.</returns>
-    private static ApplicationSettingsBase? GetApplicationSettings()
-    {
-        return (ApplicationSettingsBase?)System.Reflection.Assembly.GetEntryAssembly()!.GetTypes().FirstOrDefault(t => t.FullName!.EndsWith(".Properties.Settings"))?.GetProperty("Default")?.GetValue(null);
-    }
+    ///// <summary>
+    ///// Retrieves the application's settings instance for persisting column visibility.
+    ///// </summary>
+    ///// <returns>The <see cref="ApplicationSettingsBase"/> instance, or null if not found.</returns>
+    //private static ApplicationSettingsBase? GetApplicationSettings()
+    //{
+    //    return (ApplicationSettingsBase?)System.Reflection.Assembly.GetEntryAssembly()!.GetTypes().FirstOrDefault(t => t.FullName!.EndsWith(".Properties.Settings"))?.GetProperty("Default")?.GetValue(null);
+    //}
 }

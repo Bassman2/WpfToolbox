@@ -8,6 +8,7 @@
     <Project Path="doc/WpfToolboxDoc/WpfToolboxDoc.shfbproj" Type="7cf6df6d-3b04-46f8-a40b-537d21bca0b4" Id="6f458802-c8b8-4088-bf21-0acbf4065b1a">
       <BuildDependency Project="Src/WpfToolbox80/WpfToolbox80.csproj" />
       <BuildDependency Project="Src/WpfToolbox90/WpfToolbox90.csproj" />
+      <Build Solution="Debug|*" Project="false" />
     </Project>
   </Folder>
   <Folder Name="/Src/">

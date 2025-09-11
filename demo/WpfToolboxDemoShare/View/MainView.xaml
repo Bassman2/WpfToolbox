@@ -32,6 +32,10 @@
             <TabItem Header="ToggleSwitch Control">
                 <local:ToggleSwitchView/>
             </TabItem>
+
+            <TabItem Header="DataGridColumnVisibilityBehavior">
+                <local:DataGridColumnVisibilityBehaviorView/>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

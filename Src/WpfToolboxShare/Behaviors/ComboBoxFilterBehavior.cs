@@ -95,7 +95,7 @@ public class ComboBoxFilterBehavior : Behavior<ComboBox>
     /// <summary>
     /// Called when the ItemsSource property changes. Triggers an update of the filter list.
     /// </summary>    
-    private void OnItemsSource(object newValue)
+    private void OnItemsSource(object _)
     {
         Update();   
     }
@@ -278,7 +278,8 @@ public partial class AllFilterViewModel : FilterViewModel
         IsChecked = true;
         Value = this.filters.Select(f => f.Value).Aggregate(0, (a, b) => a | b);
         IsThreeState = false;
-    }
+    }
+
     /// <summary>
     /// Updates all filter items when the "All" filter is checked or unchecked.
     /// </summary>
