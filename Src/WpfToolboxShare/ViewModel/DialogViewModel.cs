@@ -3,7 +3,7 @@
 /// <summary>
 /// View Model base for dialogs based on DialogView and DialogButtonsView
 /// </summary>
-public partial class DialogViewModel : ObservableObject
+public partial class DialogViewModel : ObservableValidator
 {
     /// <summary>
     /// Constructor
@@ -26,11 +26,13 @@ public partial class DialogViewModel : ObservableObject
         return true;
     }
 
+    private bool OnCanOK() => !HasErrors;
+
     /// <summary>
     /// Handler for the OK button
     /// </summary>
-    [RelayCommand]
-    protected virtual void OnOK()
+    [RelayCommand(CanExecute = nameof(OnCanOK))]
+    protected virtual void OnOK()      
     {
         // update current focused element
         if (Keyboard.FocusedElement is TextBox textBox)
@@ -40,6 +42,7 @@ public partial class DialogViewModel : ObservableObject
 
         this.DialogResult = OnUpdate();
     }
+
 
     /// <summary>
     /// Handler for the Cancel button
