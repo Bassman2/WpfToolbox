@@ -17,22 +17,22 @@
     <tags>WPF Toolbox</tags>
     <readme>docs\README.md</readme>
     <dependencies>
-      <group targetFramework="net9.0-windows" />
-      <group targetFramework="net8.0-windows" />
+      <group targetFramework="net9.0-windows7.0" />
+      <group targetFramework="net8.0-windows7.0" />
     </dependencies>
-  </metadata>
-  <frameworkReferences>
-      <group targetFramework="net9.0-windows">
+	<frameworkReferences>
+      <group targetFramework="net9.0-windows7.0">
         <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
       </group>
-      <group targetFramework="net8.0-windows">
+      <group targetFramework="net8.0-windows7.0">
         <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
       </group>
     </frameworkReferences>
+  </metadata>
   <files>
-    <file src="..\Src\WpfToolbox90\bin\Release\net9.0-windows7.0\**" target="lib/net9.0-windows" />
-    <file src="..\Src\WpfToolbox80\bin\Release\net8.0-windows7.0\**" target="lib/net8.0-windows" />
-	<file src="..\Doc\WpfToolboxDoc\Help\WpfToolbox.chm" target="content" /> 
+    <file src="..\Src\WpfToolbox90\bin\Release\net9.0-windows7.0\**" target="lib/net9.0-windows7.0" />
+    <file src="..\Src\WpfToolbox80\bin\Release\net8.0-windows7.0\**" target="lib/net8.0-windows7.0" />
+	<!-- <file src="..\Doc\WpfToolboxDoc\Help\WpfToolbox.chm" target="content" /> -->
     <file src="..\README.md" target="docs\" />
     <file src="..\LICENSE" target="content" />
   </files>
