@@ -25,6 +25,31 @@ public partial class DialogView : Window
         //ResourceDictionary dict = new ResourceDictionary();
         //dict.Source = new Uri(uriStr, UriKind.Relative);
         //this.Resources.MergedDictionaries.Add(dict);
+
+        var style = new Style(typeof(TextBox))
+        {
+            Triggers =
+            {
+                new Trigger
+                {
+                    Property = Validation.HasErrorProperty,
+                    Value = true,
+                    Setters =
+                    {
+                        new Setter
+                        {
+                            Property = ToolTipProperty,
+                            Value = new Binding
+                            {
+                                RelativeSource = new RelativeSource(RelativeSourceMode.Self),
+                                Path = new PropertyPath("(Validation.Errors)[0].ErrorContent")
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        this.Resources.Add("ToolTipError", style);
     }
 
     #region DialogResult
