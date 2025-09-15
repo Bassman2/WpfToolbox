@@ -4,6 +4,6 @@
     xmlns:conv="clr-namespace:WpfToolbox.Converter">
 
     <conv:DescriptionConverter x:Key="DescriptionConverter"/>
-    
-   
+    <conv:BoolNotConverter x:Key="BoolNotConverter"/>
+
 </ResourceDictionary>
