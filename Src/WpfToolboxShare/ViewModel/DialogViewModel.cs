@@ -9,7 +9,15 @@ public partial class DialogViewModel : ObservableValidator
     /// Constructor
     /// </summary>
     public DialogViewModel()
-    { }
+    {
+        this.ErrorsChanged += (s, e) => OnPropertyChanged(nameof(HasNoErrors));
+    }
+
+
+    /// <summary>
+    /// Gets a value indicating whether the view model has no validation errors.
+    /// </summary>
+    public bool HasNoErrors => !HasErrors;
 
     /// <summary>
     /// true if the OK button was pressed, else flase

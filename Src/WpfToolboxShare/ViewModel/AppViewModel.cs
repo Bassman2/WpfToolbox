@@ -27,10 +27,16 @@ public abstract partial class AppViewModel : ObservableValidator
     /// </summary>
     public AppViewModel()
     {
+        this.ErrorsChanged += (s, e) => OnPropertyChanged(nameof(HasNoErrors));
         UpgradeSettings();
         mainWindow = Application.Current.MainWindow;
         mainDispatcher = Application.Current.MainWindow.Dispatcher;
     }
+
+    /// <summary>
+    /// Gets a value indicating whether the view model has no validation errors.
+    /// </summary>
+    public bool HasNoErrors => !HasErrors;
 
     /// <summary>
     /// Gets the path to the application's local app data folder.

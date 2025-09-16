@@ -20,6 +20,8 @@ global using CommunityToolkit.Mvvm.Input;
 
 global using WpfToolbox.Controls;
 global using WpfToolbox.Attributes;
+global using WpfToolbox.Validations;
+
 
 global using WpfToolboxDemo.View;
 global using WpfToolboxDemo.ViewModel;

@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\FilterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NumericViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ToggleSwitchViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ValidationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\AutoFilterView.xaml.cs">
       <DependentUpon>AutoFilterView.xaml</DependentUpon>
     </Compile>
@@ -44,6 +45,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\ToggleSwitchView.xaml.cs">
       <DependentUpon>ToggleSwitchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\ValidationView.xaml.cs">
+      <DependentUpon>ValidationView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +80,10 @@
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)View\ToggleSwitchView.xaml">
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)View\ValidationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
