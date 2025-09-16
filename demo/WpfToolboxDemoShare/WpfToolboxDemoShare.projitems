@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\FilterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NumericViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ToggleSwitchViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ValidationItemViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ValidationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\AutoFilterView.xaml.cs">
       <DependentUpon>AutoFilterView.xaml</DependentUpon>

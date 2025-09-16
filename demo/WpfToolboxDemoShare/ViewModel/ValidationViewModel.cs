@@ -18,4 +18,12 @@ public partial class ValidationViewModel : ObservableValidator
     [Required]
     [CustomValidation(typeof(TextValidation), nameof(TextValidation.IdentifierValidation))]
     private string text;
+
+    [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [Required]
+    private ObservableCollection<ValidationItemViewModel> list = [
+        new ValidationItemViewModel { Name = "Peter", Text = "DemoA1" },
+        new ValidationItemViewModel { Name = "Paul", Text = "DemoB2" },
+        new ValidationItemViewModel { Name = "Mary", Text = "DemoC3" }];
 }
