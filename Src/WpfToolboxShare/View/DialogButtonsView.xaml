@@ -20,7 +20,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Button Grid.Column="1" Content="OK" Command="{Binding OKCommand}" Margin="5" IsDefault="True" />
-        <Button Grid.Column="2" Content="Cancel" Command="{Binding CancelCommand}" IsEnabled="{Binding HasErrors, Converter={StaticResource BoolNotConverter}}" Margin="5" IsCancel="True"/>
+        <Button Grid.Column="1" Content="OK" Command="{Binding OKCommand}" IsEnabled="{Binding HasErrors, Converter={StaticResource BoolNotConverter}}" IsDefault="True" Margin="5"/>
+        <Button Grid.Column="2" Content="Cancel" Command="{Binding CancelCommand}" IsCancel="True" Margin="5" />
     </Grid>
 </UserControl>
