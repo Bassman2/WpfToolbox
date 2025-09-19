@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Windows.Controls;
 
 namespace WpfToolboxDemo.ViewModel;
 
@@ -7,11 +6,26 @@ public partial class ValidationViewModel : ObservableValidator
 {
     public ValidationViewModel()
     {
-        this.ErrorsChanged += (s, e) => OnPropertyChanged(nameof(HasNoErrors));
+        this.ErrorsChanged += OnErrorChanged;
         text = "Hallo";
+
+        List<ValidationItemViewModel> l = [
+        new ValidationItemViewModel { Name = "Pete", Text = "DemoA1" },
+        new ValidationItemViewModel { Name = "Paul", Text = "DemoB2" },
+        new ValidationItemViewModel { Name = "Mary", Text = "DemoC3" }];
+       // List.ErrorsChanged += OnErrorChanged;
+
+        List = new ObservableCollection<ValidationItemViewModel>(l);
     }
 
-    public bool HasNoErrors => !HasErrors;
+    private void OnErrorChanged(object? sender, DataErrorsChangedEventArgs e)
+    {
+        OnPropertyChanged(nameof(HasNoErrors));
+    }
+
+    
+
+    public bool HasNoErrors => !(HasErrors);
 
     [ObservableProperty]
     [NotifyDataErrorInfo]
@@ -22,8 +36,8 @@ public partial class ValidationViewModel : ObservableValidator
     [ObservableProperty]
     [NotifyDataErrorInfo]
     [Required]
-    private ObservableCollection<ValidationItemViewModel> list = [
-        new ValidationItemViewModel { Name = "Peter", Text = "DemoA1" },
-        new ValidationItemViewModel { Name = "Paul", Text = "DemoB2" },
-        new ValidationItemViewModel { Name = "Mary", Text = "DemoC3" }];
+    [List]
+    private ObservableCollection<ValidationItemViewModel> list;
+
+    //private ObservableValidatorCollection<ValidationItemViewModel> list;
 }

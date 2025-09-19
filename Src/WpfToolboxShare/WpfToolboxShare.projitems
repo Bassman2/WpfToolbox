@@ -62,6 +62,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Misc\ApplicationDispatcher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Misc\Enumerable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Misc\MessageBoxExt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validations\ListAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validations\UrlValidationAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validations\ObservableValidatorCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Misc\Profiler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Misc\Tools.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Misc\WaitCursor.cs" />
