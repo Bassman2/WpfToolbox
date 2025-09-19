@@ -38,6 +38,13 @@ public class EnumComboBox : ComboBox
     /// <param name="e">The event data.</param>
     private void OnEnumTypePropertyChanged(DependencyPropertyChangedEventArgs e)
     {
+        if (e.NewValue == null)
+        {
+            this.ItemsSource = null;
+            this.ItemTemplate = null;
+            return;
+        }
+
         Type enumType = (Type)e.NewValue;
         if (enumType.IsEnum == false)
         {
@@ -63,7 +70,7 @@ public class EnumComboBox : ComboBox
             var textBlock = new FrameworkElementFactory(typeof(TextBlock));
             textBlock.SetBinding(TextBlock.TextProperty, new Binding("Description"));
             textBlock.SetValue(TextBlock.VerticalAlignmentProperty, VerticalAlignment.Center);
-            textBlock.SetValue(TextBlock.BackgroundProperty, Brushes.Yellow);
+            //textBlock.SetValue(TextBlock.BackgroundProperty, Brushes.Yellow);
 
             dockPanel.AppendChild(image);
             dockPanel.AppendChild(textBlock);
