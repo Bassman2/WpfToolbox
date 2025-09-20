@@ -9,7 +9,7 @@
     <RootNamespace>WpfToolbox</RootNamespace>
     <Version>1.4.1.0</Version>
 	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-	<GenerateDocumentationFile>True</GenerateDocumentationFile>  
+	<GenerateDocumentationFile>False</GenerateDocumentationFile>  
   </PropertyGroup>
   
   <Import Project="..\WpfToolboxShare\WpfToolboxShare.projitems" Label="Shared" />

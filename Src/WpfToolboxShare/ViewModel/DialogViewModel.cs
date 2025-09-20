@@ -3,7 +3,7 @@
 /// <summary>
 /// View Model base for dialogs based on DialogView and DialogButtonsView
 /// </summary>
-public partial class DialogViewModel : ObservableValidator
+public partial class DialogViewModel : ObservableValidator, IRootValidator
 {
     /// <summary>
     /// Constructor
@@ -13,6 +13,10 @@ public partial class DialogViewModel : ObservableValidator
         this.ErrorsChanged += (s, e) => OnPropertyChanged(nameof(HasNoErrors));
     }
 
+    public void ChildHasErrors(LeafViewModel child, string? propertyName)
+    {
+        var errors = child.GetErrors().ToList();
+    }
 
     /// <summary>
     /// Gets a value indicating whether the view model has no validation errors.

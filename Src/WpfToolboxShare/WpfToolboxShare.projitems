@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converter\StringListToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IContextMenu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFilterItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRootValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\AttributeHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\ImageAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\ResourceAttribute.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AppViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\DialogViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\FileViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\LeafViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\AppRibbonView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\AppWindowView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\DialogButtonsView.xaml.cs">

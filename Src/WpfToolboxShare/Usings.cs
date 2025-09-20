@@ -35,3 +35,4 @@ global using WpfToolbox.Converter;
 global using WpfToolbox.Interfaces;
 global using WpfToolbox.Internal;
 global using WpfToolbox.Misc;
+global using WpfToolbox.ViewModel;
