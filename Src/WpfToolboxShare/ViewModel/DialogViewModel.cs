@@ -10,10 +10,14 @@ public partial class DialogViewModel : ObservableValidator, IRootValidator
     /// <summary>
     /// Constructor
     /// </summary>
-    //public DialogViewModel()
-    //{
-    //    this.ErrorsChanged += (s, e) => OnPropertyChanged(nameof(HasNoErrors));
-    //}
+    public DialogViewModel()
+    {
+        this.ErrorsChanged += (s, e) =>
+        {
+            OnPropertyChanged(nameof(HasErrors));
+            OnPropertyChanged(nameof(HasNoErrors));
+        };
+    }
 
 
     private readonly Dictionary<(LeafViewModel child, string property), List<ValidationResult>> childErrors = [];
@@ -41,6 +45,15 @@ public partial class DialogViewModel : ObservableValidator, IRootValidator
     /// Gets a value indicating whether the view model has no validation errors.
     /// </summary>
     public bool HasNoErrors => !HasErrors;
+
+
+    public new IEnumerable<ValidationResult> GetErrors(string? propertyName = null)
+    {
+        return base.GetErrors(propertyName)
+            .Concat(childErrors
+                .Where(ce => propertyName == null || ce.Key.property == propertyName)
+                .SelectMany(ce => ce.Value));   
+    }
 
     /// <summary>
     /// true if the OK button was pressed, else flase
