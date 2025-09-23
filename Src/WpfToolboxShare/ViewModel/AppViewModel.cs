@@ -338,30 +338,30 @@ public abstract partial class AppViewModel : ObservableValidator
         MessageBox.Show(Application.Current.MainWindow, info, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
     }
 
-    /// <summary>
-    /// The help page to open for the application.
-    /// </summary>
-    protected string HelpPage { get; set; } = null!;
+    ///// <summary>
+    ///// The help page to open for the application.
+    ///// </summary>
+    //protected string HelpPage { get; set; } = null!;
 
-    /// <summary>
-    /// Handles the Help command. Opens the help page.
-    /// </summary>
-    [RelayCommand]
-    protected virtual void OnHelp()
-    {
-        if (string.IsNullOrWhiteSpace(HelpPage)) return;
-        try
-        {
-            Process myProcess = new();
-            myProcess.StartInfo.UseShellExecute = true;
-            myProcess.StartInfo.FileName = HelpPage;
-            myProcess.Start();
-        }
-        catch (Exception e)
-        {
-            Debug.WriteLine(e.Message);
-        }
-    }
+    ///// <summary>
+    ///// Handles the Help command. Opens the help page.
+    ///// </summary>
+    //[RelayCommand]
+    //protected virtual void OnHelp()
+    //{
+    //    if (string.IsNullOrWhiteSpace(HelpPage)) return;
+    //    try
+    //    {
+    //        Process myProcess = new();
+    //        myProcess.StartInfo.UseShellExecute = true;
+    //        myProcess.StartInfo.FileName = HelpPage;
+    //        myProcess.Start();
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        Debug.WriteLine(e.Message);
+    //    }
+    //}
 
     /// <summary>
     /// Determines whether the Exit command can execute.

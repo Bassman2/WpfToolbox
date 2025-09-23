@@ -1,4 +1,6 @@
-﻿namespace WpfToolbox.ViewModel;
+﻿using ValidationResult = System.ComponentModel.DataAnnotations.ValidationResult;
+
+namespace WpfToolbox.ViewModel;
 
 /// <summary>
 /// Represents a base view model for leaf nodes in a view model hierarchy.
@@ -26,6 +28,6 @@ public partial class LeafViewModel<R, P> : LeafViewModel where R : IRootValidato
     {
         this.root = root;
         this.parent = parent;
-        this.ErrorsChanged += (s, e) => root.ChildHasErrors(this, e.PropertyName);
+        this.ErrorsChanged += (s, e) => root.ChangeChildErrors(this, e.PropertyName, GetErrors());
     }
 }

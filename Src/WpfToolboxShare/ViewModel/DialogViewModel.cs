@@ -1,4 +1,6 @@
-﻿namespace WpfToolbox.ViewModel;
+﻿using ValidationResult = System.ComponentModel.DataAnnotations.ValidationResult;
+
+namespace WpfToolbox.ViewModel;
 
 /// <summary>
 /// View Model base for dialogs based on DialogView and DialogButtonsView
@@ -8,15 +10,32 @@ public partial class DialogViewModel : ObservableValidator, IRootValidator
     /// <summary>
     /// Constructor
     /// </summary>
-    public DialogViewModel()
+    //public DialogViewModel()
+    //{
+    //    this.ErrorsChanged += (s, e) => OnPropertyChanged(nameof(HasNoErrors));
+    //}
+
+
+    private readonly Dictionary<(LeafViewModel child, string property), List<ValidationResult>> childErrors = [];
+
+    public void ChangeChildErrors(LeafViewModel child, string? propertyName, IEnumerable<ValidationResult> results)
     {
-        this.ErrorsChanged += (s, e) => OnPropertyChanged(nameof(HasNoErrors));
+        List<ValidationResult> list = [.. results];
+
+        if (list.Count > 0 )
+        {             
+            childErrors[(child, propertyName!)] = list;
+        }
+        else
+        {
+            childErrors.Remove((child, propertyName!));
+        }
+
+        OnPropertyChanged(nameof(HasErrors));
+        OnPropertyChanged(nameof(HasNoErrors));
     }
 
-    public void ChildHasErrors(LeafViewModel child, string? propertyName)
-    {
-        var errors = child.GetErrors().ToList();
-    }
+    public new bool HasErrors => base.HasErrors || childErrors.Any(ce => ce.Value.Count > 0);
 
     /// <summary>
     /// Gets a value indicating whether the view model has no validation errors.
@@ -38,7 +57,7 @@ public partial class DialogViewModel : ObservableValidator, IRootValidator
         return true;
     }
 
-    private bool OnCanOK() => !HasErrors;
+    private bool OnCanOK() => HasNoErrors;
 
     /// <summary>
     /// Handler for the OK button

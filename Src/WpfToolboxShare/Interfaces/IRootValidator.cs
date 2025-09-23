@@ -1,6 +1,8 @@
-﻿namespace WpfToolbox.Interfaces;
+﻿using ValidationResult = System.ComponentModel.DataAnnotations.ValidationResult;
+
+namespace WpfToolbox.Interfaces;
 
 public interface IRootValidator
 {
-    void ChildHasErrors(LeafViewModel child, string? propertyName);
+    void ChangeChildErrors(LeafViewModel child, string? propertyName, IEnumerable<ValidationResult> results);
 }
