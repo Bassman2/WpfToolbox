@@ -7,5 +7,6 @@
     <Application.Resources>
         <conv:DescriptionConverter x:Key="descriptionConverter"/>
         <conv:ResourceConverter x:Key="resourceConverter"/>
+        <conv:ListToStringConverter x:Key="listToStringConverter"/>
     </Application.Resources>
 </Application>

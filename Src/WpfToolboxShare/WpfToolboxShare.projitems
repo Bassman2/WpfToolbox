@@ -13,7 +13,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\DataGridColumnReorderBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\RibbonPersistenceBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\StoreBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckComboBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckListBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\BoolNotConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\LIstToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\StringListToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IContextMenu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFilterItem.cs" />
@@ -85,6 +88,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)View\DialogView.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\CheckListBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Themes\CopyButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -103,6 +110,10 @@
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Themes\AutoToggleButton.xaml">
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\CheckComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Themes\Validation.xaml">
       <SubType>Designer</SubType>

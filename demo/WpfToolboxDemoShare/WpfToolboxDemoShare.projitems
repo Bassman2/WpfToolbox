@@ -15,6 +15,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Usings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AutoFilterViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CheckComboBoxViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CheckListBoxViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ColumnsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\DataGridColumnVisibilityBehaviorViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\EnumComboBoxViewModel.cs" />
@@ -25,6 +27,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ValidationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\AutoFilterView.xaml.cs">
       <DependentUpon>AutoFilterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\CheckComboBoxView.xaml.cs">
+      <DependentUpon>CheckComboBoxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\CheckListBoxView.xaml.cs">
+      <DependentUpon>CheckListBoxView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\ColumnsView.xaml.cs">
       <DependentUpon>ColumnsView.xaml</DependentUpon>
@@ -59,6 +67,14 @@
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)View\AutoFilterView.xaml">
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)View\CheckComboBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)View\CheckListBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)View\ColumnsView.xaml">
       <SubType>Designer</SubType>

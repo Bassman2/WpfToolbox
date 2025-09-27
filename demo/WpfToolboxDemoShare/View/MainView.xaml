@@ -33,6 +33,14 @@
                 <local:ToggleSwitchView/>
             </TabItem>
 
+            <TabItem Header="CheckListBox Control">
+                <local:CheckListBoxView/>
+            </TabItem>
+
+            <TabItem Header="CheckComboBox Control">
+                <local:CheckComboBoxView/>
+            </TabItem>
+
             <TabItem Header="DataGridColumnVisibilityBehavior">
                 <local:DataGridColumnVisibilityBehaviorView/>
             </TabItem>
