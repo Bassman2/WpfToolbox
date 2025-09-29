@@ -1,38 +1,22 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:ctrl="clr-namespace:WpfToolbox.Controls">
-
-    <!--<ctrl:MultiSelectConverter x:Key="MultiSelectConverter"/>
-    <ctrl:MultiSelectMultiConverter x:Key="MultiSelectMultiConverter"/>-->
-
+    xmlns:ctrl="clr-namespace:WpfToolbox.Controls"
+    xmlns:prim="clr-namespace:WpfToolbox.Controls.Primitives">
+  
     <Style TargetType="{x:Type ctrl:CheckComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}" >
-        <!-- We now allow free text in the text area -->
         <Setter Property="IsEditable" Value="True"/>
         <Setter Property="IsReadOnly" Value="True"/>
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <CheckBox Content="{Binding}">
-                        <CheckBox.ContentTemplate>
+                    <prim:CheckControl Content="{Binding}" ParentControl="{Binding RelativeSource={RelativeSource AncestorType=ctrl:CheckComboBox}}">
+                        <prim:CheckControl.ContentTemplate>
                             <DataTemplate>
-                                <!-- Wrap the bound text in a TextBlock with xml:space="preserve" to avoid underscore access key underlining -->
                                 <TextBlock Text="{Binding}" xml:space="preserve"/>
                             </DataTemplate>
-                        </CheckBox.ContentTemplate>
-                        <CheckBox.IsChecked>
-                            <MultiBinding Mode="TwoWay">
-                                <!-- Bind the SelectedItems collection from the parent -->
-                                <Binding Path="SelectedItems" RelativeSource="{RelativeSource AncestorType=ctrl:StringListComboBox}" />
-                                <!-- Bind the current item -->
-                                <Binding Path="."/>
-                                <MultiBinding.Converter>
-                                    <!-- You may implement a multi-value converter (see previous examples) to return true if the current item is in SelectedItems -->
-                                    <ctrl:MultiSelectMultiConverter/>
-                                </MultiBinding.Converter>
-                            </MultiBinding>
-                        </CheckBox.IsChecked>
-                    </CheckBox>
+                        </prim:CheckControl.ContentTemplate>
+                    </prim:CheckControl>
                 </DataTemplate>
             </Setter.Value>
         </Setter>

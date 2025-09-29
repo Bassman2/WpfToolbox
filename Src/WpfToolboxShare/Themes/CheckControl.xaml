@@ -1,0 +1,8 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prim="clr-namespace:WpfToolbox.Controls.Primitives">
+
+    <Style TargetType="{x:Type prim:CheckControl}" BasedOn="{StaticResource {x:Type CheckBox}}"/>
+    
+</ResourceDictionary>

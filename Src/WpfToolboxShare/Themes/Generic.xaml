@@ -5,6 +5,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/WpfToolbox;component/Themes/AutoToggleButton.xaml" />
         <ResourceDictionary Source="/WpfToolbox;component/Themes/CheckComboBox.xaml" />
+        <ResourceDictionary Source="/WpfToolbox;component/Themes/CheckControl.xaml" />
         <ResourceDictionary Source="/WpfToolbox;component/Themes/CheckListBox.xaml" />
         <ResourceDictionary Source="/WpfToolbox;component/Themes/Converter.xaml" />
         <ResourceDictionary Source="/WpfToolbox;component/Themes/CopyButton.xaml" />
@@ -12,7 +13,5 @@
         <ResourceDictionary Source="/WpfToolbox;component/Themes/NumericSpin.xaml" />
         <ResourceDictionary Source="/WpfToolbox;component/Themes/Validation.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
-
     
 </ResourceDictionary>

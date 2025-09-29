@@ -6,40 +6,59 @@ public partial class CheckListBoxViewModel : ObservableObject
     {
         TextItems =
         [
-            "Item 1",
-            "Item 2",
-            "Item 3",
-            "Item 4",
-            "Item 5"
+            "Item_A 1",
+            "Item_A 2",
+            "Item_A 3",
+            "Item_A 4",
+            "Item_A 5"
         ];
-        CheckedTextItems = ["Item 2", "Item 4"];
+        CheckedTextItems = [ "Item_A 2", "Item_A 4" ];
+        CheckedTextItems.CollectionChanged += (c, e) => OnUpdateTextItemsText();
+        OnUpdateTextItemsText();
 
         DataItems =
         [
-            new DataItem { Name = "Data 1", Value = 10 },
-            new DataItem { Name = "Data 2", Value = 20 },
-            new DataItem { Name = "Data 3", Value = 30 },
-            new DataItem { Name = "Data 4", Value = 40 },
-            new DataItem { Name = "Data 5", Value = 50 }
+            new CheckListBoxtem { Name = "Data_A 1", Value = 10 },
+            new CheckListBoxtem { Name = "Data_A 2", Value = 20 },
+            new CheckListBoxtem { Name = "Data_A 3", Value = 30 },
+            new CheckListBoxtem { Name = "Data_A 4", Value = 40 },
+            new CheckListBoxtem { Name = "Data_A 5", Value = 50 }
         ];
         CheckedDataItems = [ DataItems[1], DataItems[2] ];
+    }
+
+    #region TextItems
+
+    private void OnUpdateTextItemsText()
+    {
+        TextItemsText = string.Join(", ", CheckedTextItems.Order());
     }
 
     public List<string> TextItems { get; set; }
 
     [ObservableProperty]
-    private List<string> checkedTextItems;
-
-    public List<DataItem> DataItems { get; set; }
+    private ObservableCollection<string> checkedTextItems;
 
     [ObservableProperty]
-    private List<DataItem> checkedDataItems;
+    private string textItemsText = "";
 
-    public class DataItem
-    {
-        public string Name { get; set; } = null!;
-        public int Value { get; set; }
+    #endregion
+    public List<CheckListBoxtem> DataItems { get; set; }
 
-        public override string ToString() => Name;
-    }
+    [ObservableProperty]
+    private List<CheckListBoxtem> checkedDataItems;
+}
+
+public class CheckListBoxtem
+{
+    public string Name { get; set; } = null!;
+    public int Value { get; set; }
+
+    public override string ToString() => Name;
+
+    public override int GetHashCode()
+        => (Name, Value).GetHashCode();
+
+    public override bool Equals(object? obj)
+        => obj is CheckListBoxtem other && Name == other.Name && Value == other.Value;
 }

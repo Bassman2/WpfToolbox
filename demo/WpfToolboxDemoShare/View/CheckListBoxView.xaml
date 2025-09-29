@@ -25,13 +25,41 @@
             <RowDefinition Height="20"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" Content="Text CheckListBox" />
-        <CheckListBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding TextItems}" CheckedItems="{Binding CheckedTextItems}" Margin="3" />
-        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding CheckedTextItems, Converter={StaticResource listToStringConverter}}" Margin="3" IsReadOnly="True" />
+        <CheckListBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding TextItems}" CheckedItems="{Binding CheckedTextItems, Mode=TwoWay}" Margin="3" />
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding TextItemsText}" Margin="3" IsReadOnly="True" />
 
         <Label Grid.Column="0" Grid.Row="3" Content="Data CheckListBox" />
         <CheckListBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding DataItems}" CheckedItems="{Binding CheckedDataItems}" Margin="3" />
-        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding CheckedDataItems, Converter={StaticResource listToStringConverter}}" Margin="3" IsReadOnly="True" />
+        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding CheckedDataItems, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource listToStringConverter}}" Margin="3" IsReadOnly="True" />
+
+        <Label Grid.Column="0" Grid.Row="6" Content="Text Item CheckListBox" />
+        <CheckListBox Grid.Column="1" Grid.Row="6" CheckedItems="{Binding CheckedTextItems}" Margin="3" >
+            <ListBoxItem Content="Item_A 1"/>
+            <ListBoxItem Content="Item_A 2"/>
+            <ListBoxItem Content="Item_A 3"/>
+            <ListBoxItem Content="Item_A 4"/>
+            <ListBoxItem Content="Item_A 5"/>
+        </CheckListBox>
+        <TextBox Grid.Column="1" Grid.Row="7" Text="{Binding CheckedTextItems, Converter={StaticResource listToStringConverter}}" Margin="3" IsReadOnly="True" />
+
+        <Label Grid.Column="0" Grid.Row="9" Content="Data Item CheckListBox" />
+        <CheckListBox Grid.Column="1" Grid.Row="9" CheckedItems="{Binding CheckedDataItems}" Margin="3" >
+            <ListBoxItem>
+                <vm:CheckListBoxtem Name="Item_A 1" Value="10"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <vm:CheckListBoxtem Name="Item_A 2" Value="20"/>
+            </ListBoxItem>
+
+        </CheckListBox>
+        <TextBox Grid.Column="1" Grid.Row="10" Text="{Binding CheckedDataItems, Converter={StaticResource listToStringConverter}}" Margin="3" IsReadOnly="True" />
     </Grid>
 </UserControl>

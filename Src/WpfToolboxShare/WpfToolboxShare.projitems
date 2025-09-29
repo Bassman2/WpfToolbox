@@ -16,6 +16,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckComboBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckListBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\BoolNotConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\CheckListBoxMultiValueConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\CheckListBoxValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\LIstToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\StringListToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IContextMenu.cs" />
@@ -88,6 +90,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)View\DialogView.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\CheckControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Themes\CheckListBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -129,5 +135,8 @@
   <ItemGroup>
     <Resource Include="$(MSBuildThisFileDirectory)Images\BallBlue16.png" />
     <Resource Include="$(MSBuildThisFileDirectory)Images\BallGrey16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\WpfToolboxShare\Controls\Primitives\CheckControl.cs" />
   </ItemGroup>
 </Project>
