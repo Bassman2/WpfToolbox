@@ -47,7 +47,7 @@ public class CheckComboBox : ComboBox
 
     internal void UpdateText()
     {
-        Text = string.Join(", ", CheckedItems.Cast<object>().Select(x => x?.ToString()).Order());
+        Text = CheckedItems is not null ? string.Join(", ", CheckedItems.Cast<object>().Select(x => x?.ToString()).Order()) : "";
     }
 }
 
