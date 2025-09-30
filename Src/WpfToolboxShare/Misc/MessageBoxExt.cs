@@ -112,6 +112,6 @@ public static class MessageBoxExt
     /// </summary>
     private static MessageBoxResult ShowQuestionIntern(string message)
     {
-        return MessageBox.Show(Application.Current.MainWindow, message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+        return MessageBox.Show(Application.Current.MainWindow, message, "Info", MessageBoxButton.YesNo, MessageBoxImage.Question);
     }
 }
