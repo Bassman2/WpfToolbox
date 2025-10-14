@@ -20,7 +20,7 @@ jobs:
 
     steps:
     - name: Checkout Main
-      uses: actions/checkout@v4  
+      uses: actions/checkout@v5  
     
     - name: Add SignKeys
       uses: Bassman2/SignKey@v1
