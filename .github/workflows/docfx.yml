@@ -28,10 +28,10 @@ jobs:
     steps:
 
     - name: Checkout Main
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       
     - name: Dotnet Setup
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 9.x
 
@@ -39,7 +39,7 @@ jobs:
     - run: docfx DocFx/docfx.json
 
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
+      uses: actions/upload-pages-artifact@v4
       with:
         # Upload entire repository
         path: 'docs'
