@@ -66,7 +66,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="NumericSlider" TargetType="{x:Type Control}">
+    <Style x:Key="Slider" TargetType="{x:Type Control}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Control">
@@ -115,10 +115,10 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type c:IntegerSlider}" BasedOn="{StaticResource NumericSlider}" />
+    <Style TargetType="{x:Type c:IntegerSlider}" BasedOn="{StaticResource Slider}" />
 
-    <Style TargetType="{x:Type c:DoubleSlider}" BasedOn="{StaticResource NumericSlider}" />
+    <Style TargetType="{x:Type c:DoubleSlider}" BasedOn="{StaticResource Slider}" />
 
-    <Style TargetType="{x:Type c:DecimalSlider}" BasedOn="{StaticResource NumericSlider}" />
+    <Style TargetType="{x:Type c:DecimalSlider}" BasedOn="{StaticResource Slider}" />
 
 </ResourceDictionary>

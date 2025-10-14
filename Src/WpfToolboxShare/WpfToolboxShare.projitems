@@ -15,6 +15,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\StoreBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckComboBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckListBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Primitives\ValueSliderControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Primitives\ValueSpinControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\BoolNotConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\CheckListBoxMultiValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\CheckListBoxValueConverter.cs" />
@@ -48,13 +50,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGridColumns\DataGridPasswordColumn.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\EnumComboBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MultipleSelectionListBox.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\DecimalSlider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\DecimalSpin.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\DoubleSlider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\DoubleSpin.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\IntegerSlider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\IntegerSpin.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\Numeric\NumericBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DecimalSlider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DecimalSpin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DoubleSlider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DoubleSpin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\IntegerSlider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\IntegerSpin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Primitives\ValueControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\BindablePasswordBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MaskedTextBlock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\RibbonComboBoxEx.cs" />
@@ -105,10 +107,10 @@
     <Page Include="$(MSBuildThisFileDirectory)Themes\Generic.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Themes\NumericSlider.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Themes\Slider.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Themes\NumericSpin.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Themes\Spin.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Themes\Converter.xaml">

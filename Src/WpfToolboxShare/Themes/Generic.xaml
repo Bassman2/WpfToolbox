@@ -9,8 +9,8 @@
         <ResourceDictionary Source="/WpfToolbox;component/Themes/CheckListBox.xaml" />
         <ResourceDictionary Source="/WpfToolbox;component/Themes/Converter.xaml" />
         <ResourceDictionary Source="/WpfToolbox;component/Themes/CopyButton.xaml" />
-        <ResourceDictionary Source="/WpfToolbox;component/Themes/NumericSlider.xaml" />
-        <ResourceDictionary Source="/WpfToolbox;component/Themes/NumericSpin.xaml" />
+        <ResourceDictionary Source="/WpfToolbox;component/Themes/Slider.xaml" />
+        <ResourceDictionary Source="/WpfToolbox;component/Themes/Spin.xaml" />
         <ResourceDictionary Source="/WpfToolbox;component/Themes/Validation.xaml" />
     </ResourceDictionary.MergedDictionaries>
     

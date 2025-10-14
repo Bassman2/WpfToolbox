@@ -31,6 +31,7 @@ global using Microsoft.Xaml.Behaviors;
 global using WpfToolbox.Attributes;
 global using WpfToolbox.Behaviors;
 global using WpfToolbox.Controls;
+global using WpfToolbox.Controls.Primitives;
 global using WpfToolbox.Converter;
 global using WpfToolbox.Interfaces;
 global using WpfToolbox.Internal;
