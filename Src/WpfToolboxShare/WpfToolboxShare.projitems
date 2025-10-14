@@ -13,8 +13,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\DataGridColumnReorderBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\RibbonPersistenceBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\StoreBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AutoGrayableImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Browser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckComboBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckListBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\HideableGridSplitter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Primitives\ValueSliderControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Primitives\ValueSpinControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\BoolNotConverter.cs" />
@@ -84,12 +87,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\DialogViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\FileViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\LeafViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\OptionsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\AppRibbonView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\AppWindowView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\DialogButtonsView.xaml.cs">
       <DependentUpon>DialogButtonsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\DialogView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\OptionsView.xaml.cs">
+      <DependentUpon>OptionsView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Themes\CheckControl.xaml">
@@ -128,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)View\DialogButtonsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)View\OptionsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

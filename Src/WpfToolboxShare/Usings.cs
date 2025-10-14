@@ -9,6 +9,7 @@ global using System.Globalization;
 global using System.IO;
 global using System.Reflection;
 global using System.Resources;
+global using System.Text;
 global using System.Windows;
 global using System.Windows.Controls;
 global using System.Windows.Controls.Primitives;
