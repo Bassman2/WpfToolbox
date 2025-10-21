@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WpfToolboxDemo.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="ColumnVisibility" Type="System.UInt32" Scope="User">
+    <Setting Name="ColumnVisibilityFlags" Type="System.UInt32" Scope="User">
       <Value Profile="(Default)">65535</Value>
     </Setting>
   </Settings>

@@ -20,38 +20,22 @@ public class DataGridColumnVisibilityBehavior : StoreBehavior<DataGrid> //Behavi
     /// <inheritdoc/>
     protected override void OnAttached()
     {
-        AssociatedObject.Initialized += OnInitialized;
+        ColumnVisibility = GetSettingsValue<uint>(uint.MaxValue);
 
         var headerStyle = new Style(typeof(DataGridColumnHeader));
         headerStyle.Setters.Add(new Setter(DataGridColumnHeader.ContextMenuProperty, headerContextMenu));
         AssociatedObject.ColumnHeaderStyle = headerStyle;
+
+        AssociatedObject.Initialized += OnInitialized;
     }
 
     /// <inheritdoc/>
     protected override void OnDetaching()
-    {
-        AssociatedObject.Initialized -= OnInitialized;
-    }
-
+        => AssociatedObject.Initialized -= OnInitialized;
     
     private void OnInitialized(object? sender, EventArgs e)
-    {
-        //if (SettingsName != null)
-        //{
-        //    var settings = GetApplicationSettings();
-        //    if (settings != null && settings.Properties.Cast<System.Configuration.SettingsProperty>().Any(p => p.Name == SettingsName))
-        //    {
-        //        ColumnVisibility = (uint)(settings[SettingsName] ?? uint.MaxValue);
-        //    }
-        //}
-
-        ColumnVisibility = GetSettingsValue<uint>(uint.MaxValue);
-    }
-
-    ///// <summary>
-    ///// Gets or sets the application settings key used to persist column visibility.
-    ///// </summary>
-    //public string? SettingsName { get; set; } = null;
+        => CreateHeaderMenu(ColumnVisibility);
+    
 
     /// <summary>
     /// Identifies the <see cref="ColumnVisibility"/> dependency property.
@@ -132,36 +116,6 @@ public class DataGridColumnVisibilityBehavior : StoreBehavior<DataGrid> //Behavi
             mask <<= 1;
         }
         ColumnVisibility = flags;
-
-        //if (SettingsName != null)
-        //{
-        //    var settings = GetApplicationSettings();
-        //    if (settings != null && settings.Properties.Cast<System.Configuration.SettingsProperty>().Any(p => p.Name == SettingsName))
-        //    {
-        //        settings[SettingsName] = flags;
-        //        settings.Save();
-        //    }
-        //}
         SetSettingsValue(flags);
     }
-
-
-    //private void OnHeaderContextMenuOpening(object sender, RoutedEventArgs e)
-    //{
-    //    if (headerContextMenu == null) return;
-    //    headerContextMenu.Items.Clear();
-    //    foreach (var column in AssociatedObject.Columns)
-    //    {
-    //        headerContextMenu.Items.Add(new MenuItem() { Header = column.Header });
-    //    }
-    //}
-
-    ///// <summary>
-    ///// Retrieves the application's settings instance for persisting column visibility.
-    ///// </summary>
-    ///// <returns>The <see cref="ApplicationSettingsBase"/> instance, or null if not found.</returns>
-    //private static ApplicationSettingsBase? GetApplicationSettings()
-    //{
-    //    return (ApplicationSettingsBase?)System.Reflection.Assembly.GetEntryAssembly()!.GetTypes().FirstOrDefault(t => t.FullName!.EndsWith(".Properties.Settings"))?.GetProperty("Default")?.GetValue(null);
-    //}
 }

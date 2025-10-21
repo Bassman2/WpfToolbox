@@ -26,12 +26,12 @@ namespace WpfToolboxDemo.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("65535")]
-        public uint ColumnVisibility {
+        public uint ColumnVisibilityFlags {
             get {
-                return ((uint)(this["ColumnVisibility"]));
+                return ((uint)(this["ColumnVisibilityFlags"]));
             }
             set {
-                this["ColumnVisibility"] = value;
+                this["ColumnVisibilityFlags"] = value;
             }
         }
     }

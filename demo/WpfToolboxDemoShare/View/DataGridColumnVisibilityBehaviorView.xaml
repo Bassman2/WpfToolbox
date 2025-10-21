@@ -18,7 +18,7 @@
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
             </DataGrid.Columns>
             <b:Interaction.Behaviors>
-                <DataGridColumnVisibilityBehavior SettingsName="ColumnVisibility"/>
+                <DataGridColumnVisibilityBehavior SettingsName="ColumnVisibilityFlags"/>
             </b:Interaction.Behaviors>
         </DataGrid>
     </Grid>
