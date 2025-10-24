@@ -83,7 +83,8 @@ public class DataGridRowArrangeBehavior : Behavior<DataGrid>
         {
             Type type = typeof(DataGrid);
             PropertyInfo? pInfo = type.GetProperty("CellsPanelActualWidth", BindingFlags.NonPublic | BindingFlags.Instance);
-            return (double)(pInfo?.GetValue(this, null) ?? 0.0);
+            var value = pInfo?.GetValue(AssociatedObject, null);
+            return (double)(value ?? 0.0);
         }
     }
 
