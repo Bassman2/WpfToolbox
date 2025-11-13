@@ -17,8 +17,16 @@
     <tags>WPF Toolbox</tags>
     <readme>docs\README.md</readme>
     <dependencies>
-      <group targetFramework="net9.0-windows7.0" />
-      <group targetFramework="net8.0-windows7.0" />
+      <group targetFramework="net9.0-windows7.0">
+		<dependency id="CommunityToolkit.Mvvm" version="8.4.0" />
+		<dependency id="Microsoft.Xaml.Behaviors.Wpf" version="1.1.135" />
+		<dependency id="DocumentFormat.OpenXml" version="3.3.0" />
+	  </group>
+      <group targetFramework="net8.0-windows7.0">
+	    <dependency id="CommunityToolkit.Mvvm" version="8.4.0" />
+		<dependency id="Microsoft.Xaml.Behaviors.Wpf" version="1.1.135" />
+		<dependency id="DocumentFormat.OpenXml" version="3.3.0" />
+	  </group>
     </dependencies>
 	<frameworkReferences>
       <group targetFramework="net9.0-windows7.0">
