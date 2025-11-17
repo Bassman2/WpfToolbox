@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ColumnsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\DataGridColumnVisibilityBehaviorViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\EnumComboBoxViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\FilteredComboBoxViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\FilterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NumericViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ToggleSwitchViewModel.cs" />
@@ -42,6 +43,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\EnumComboBoxView.xaml.cs">
       <DependentUpon>EnumComboBoxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\FilteredComboBoxView.xaml.cs">
+      <DependentUpon>FilteredComboBoxView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\FilterView.xaml.cs">
       <DependentUpon>FilterView.xaml</DependentUpon>
@@ -85,6 +89,10 @@
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)View\EnumComboBoxView.xaml">
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)View\FilteredComboBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)View\FilterView.xaml">
       <SubType>Designer</SubType>
