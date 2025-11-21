@@ -36,7 +36,11 @@
 
         <Label Grid.Row="1" Grid.Column="2" Content="String" />
         <!--<FilteredComboBox Grid.Row="2"  Grid.Column="2" ItemsSource="{Binding ClassItems}" SelectedItem="{Binding SelectedClassItem}" DisplayMemberPath="Name" Margin="3"/>-->
-        <ComboBox Grid.Row="2"  Grid.Column="2" ItemsSource="{Binding ClassItems}" SelectedItem="{Binding SelectedClassItem}" DisplayMemberPath="Name" TextSearch.TextPath="Name" IsTextSearchEnabled="True" IsEditable="True" Margin="3"/>
+        <ComboBox Grid.Row="2"  Grid.Column="2" ItemsSource="{Binding ClassItems}" SelectedItem="{Binding SelectedClassItem}" DisplayMemberPath="Name" 
+                  TextSearch.TextPath="Name" 
+                  IsTextSearchEnabled="True" 
+                  IsTextSearchCaseSensitive="False"  
+                  IsEditable="True" Margin="3"/>
         <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding SelectedClassItem.Name}" Margin="3"/>
         <TextBlock Grid.Row="3" Grid.Column="3" Text="{Binding SelectedClassItem.Value}" Margin="3"/>
     </Grid>
