@@ -29,6 +29,9 @@
             <TabItem Header="EnumComboBox Control">
                 <local:EnumComboBoxView/>
             </TabItem>
+            <TabItem Header="FilteredComboBox Control">
+                <local:FilteredComboBoxView/>
+            </TabItem>
             <TabItem Header="ToggleSwitch Control">
                 <local:ToggleSwitchView/>
             </TabItem>

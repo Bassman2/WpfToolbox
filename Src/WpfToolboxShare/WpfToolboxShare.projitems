@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Browser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckComboBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckListBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\FilteredComboBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\HideableGridSplitter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Primitives\ValueSliderControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Primitives\ValueSpinControl.cs" />
