@@ -20,7 +20,7 @@ jobs:
 
     steps:
     - name: Checkout Main
-      uses: actions/checkout@v5  
+      uses: actions/checkout@v6  
     
     - name: Add SignKeys
       uses: Bassman2/SignKey@v1
@@ -50,7 +50,7 @@ jobs:
       if: ${{ hashFiles( 'Nuget/*.nuspec' ) != '' }}
 
     - name: Upload nuget pack artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: ${{ github.event.repository.name }}NugetPackage.zip
         path: Nuget/*.nupkg
