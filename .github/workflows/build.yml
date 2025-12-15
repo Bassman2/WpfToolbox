@@ -50,7 +50,7 @@ jobs:
       if: ${{ hashFiles( 'Nuget/*.nuspec' ) != '' }}
 
     - name: Upload nuget pack artifact
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: ${{ github.event.repository.name }}NugetPackage.zip
         path: Nuget/*.nupkg
