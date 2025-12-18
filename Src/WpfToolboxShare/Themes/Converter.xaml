@@ -5,5 +5,7 @@
 
     <conv:DescriptionConverter x:Key="DescriptionConverter"/>
     <conv:BoolNotConverter x:Key="BoolNotConverter"/>
+    <conv:BoolToVisibilityCollapsedConverter x:Key="BoolToVisibilityCollapsedConverter"/>
+    <conv:BoolToVisibilityHiddenConverter x:Key="BoolToVisibilityHiddenConverter"/>
 
 </ResourceDictionary>
