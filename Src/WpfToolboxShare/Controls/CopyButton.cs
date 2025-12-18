@@ -44,6 +44,6 @@ public class CopyButton : Button
     protected override void OnClick()
     {
         base.OnClick();
-        Clipboard.SetText(CopyValue);
+        Clipboard.SetText(CopyValue ?? "");
     }
 }
