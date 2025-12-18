@@ -28,6 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converter\BoolToVisibilityHiddenConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\CheckListBoxMultiValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\CheckListBoxValueConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\EnumerableToEnumerationStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\EnumerableToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IContextMenu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFilterItem.cs" />
