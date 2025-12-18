@@ -22,12 +22,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Primitives\ValueSliderControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Primitives\ValueSpinControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\BoolNotConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\BoolToBoldConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\BoolToColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\BoolToVisibilityCollapsedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\BoolToVisibilityHiddenConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\CheckListBoxMultiValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\CheckListBoxValueConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\LIstToStringConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\StringListToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\EnumerableToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IContextMenu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFilterItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRootValidator.cs" />

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WpfToolbox.Converter;
+﻿namespace WpfToolbox.Converter;
 
 public class CheckListBoxMultiValueConverter : IMultiValueConverter
 {
