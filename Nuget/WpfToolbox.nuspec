@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>WpfToolbox</id>
-    <version>1.10.0</version>
+    <version>1.12.0</version>
     <title>WPF Toolbox</title>
     <authors>Ralf Beckers</authors>
     <owners>Ralf Beckers</owners>
@@ -17,6 +17,11 @@
     <tags>WPF Toolbox</tags>
     <readme>docs\README.md</readme>
     <dependencies>
+	  <group targetFramework="net10.0-windows7.0">
+		<dependency id="CommunityToolkit.Mvvm" version="8.4.0" />
+		<dependency id="Microsoft.Xaml.Behaviors.Wpf" version="1.1.135" />
+		<dependency id="DocumentFormat.OpenXml" version="3.3.0" />
+	  </group>
       <group targetFramework="net9.0-windows7.0">
 		<dependency id="CommunityToolkit.Mvvm" version="8.4.0" />
 		<dependency id="Microsoft.Xaml.Behaviors.Wpf" version="1.1.135" />
@@ -29,7 +34,10 @@
 	  </group>
     </dependencies>
 	<frameworkReferences>
-      <group targetFramework="net9.0-windows7.0">
+      <group targetFramework="net10.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
+      </group>
+	  <group targetFramework="net9.0-windows7.0">
         <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
       </group>
       <group targetFramework="net8.0-windows7.0">
@@ -38,6 +46,7 @@
     </frameworkReferences>
   </metadata>
   <files>
+    <file src="..\Src\WpfToolbox100\bin\Release\net10.0-windows7.0\**" target="lib/net10.0-windows7.0" />
     <file src="..\Src\WpfToolbox90\bin\Release\net9.0-windows7.0\**" target="lib/net9.0-windows7.0" />
     <file src="..\Src\WpfToolbox80\bin\Release\net8.0-windows7.0\**" target="lib/net8.0-windows7.0" />
     <file src="..\README.md" target="docs\" />
