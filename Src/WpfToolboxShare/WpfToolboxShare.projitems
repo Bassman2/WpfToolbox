@@ -11,6 +11,8 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\DataGridColumnReorderBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ListBoxDoubleClickItemBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ListBoxMultipleSelectionBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ListBoxScrollIntoViewBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\RibbonPersistenceBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\StoreBehavior.cs" />
