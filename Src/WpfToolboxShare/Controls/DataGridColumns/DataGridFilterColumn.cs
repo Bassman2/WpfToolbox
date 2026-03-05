@@ -12,10 +12,10 @@ public abstract class DataGridFilterColumn : DataGridTextColumn
     /// <summary>
     /// List of filter items displayed in the ComboBox for filtering the DataGrid column.
     /// </summary>
-    protected List<FilterItem>? filters;
+    protected List<DataGridFilterItem>? filters;
 
     // Special filter item representing the "All" option.
-    private readonly FilterItem allFilter = new();
+    private readonly DataGridFilterItem allFilter = new();
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DataGridFilterColumn"/> class.
@@ -76,7 +76,7 @@ public abstract class DataGridFilterColumn : DataGridTextColumn
     /// </summary>
     protected virtual void OnChecked(object sender, RoutedEventArgs e)
     {
-        FilterItem fvm = (FilterItem)((CheckBox)sender).DataContext;
+        DataGridFilterItem fvm = (DataGridFilterItem)((CheckBox)sender).DataContext;
 
         Debug.WriteLine($"OnChecked {fvm.Name}");
 
@@ -136,92 +136,92 @@ public abstract class DataGridFilterColumn : DataGridTextColumn
         }
     }
 
-    /// <summary>
-    /// Represents a filter item for the filter ComboBox.
-    /// Supports different constructors for various filter types.
-    /// </summary>
-    [DebuggerDisplay("FilterItem {Name}")]
-    protected class FilterItem : INotifyPropertyChanged
-    {
-        /// <summary>
-        /// Constructor for 'All' filter item
-        /// </summary>
-        public FilterItem()
-        {
-            this.IsAll = true;
-            this.Name = "All";
-            this.IsChecked = true;
-        }
+    ///// <summary>
+    ///// Represents a filter item for the filter ComboBox.
+    ///// Supports different constructors for various filter types.
+    ///// </summary>
+    //[DebuggerDisplay("FilterItem {Name}")]
+    //protected class FilterItem : INotifyPropertyChanged
+    //{
+    //    /// <summary>
+    //    /// Constructor for 'All' filter item
+    //    /// </summary>
+    //    public FilterItem()
+    //    {
+    //        this.IsAll = true;
+    //        this.Name = "All";
+    //        this.IsChecked = true;
+    //    }
 
-        /// <summary>
-        /// Constructor for flag enum filter item
-        /// </summary>
-        public FilterItem(object item)
-        {
-            FieldInfo? fieldInfo = item.GetType().GetField(item.ToString()!);
-            this.Name = fieldInfo?.GetCustomAttribute<DescriptionAttribute>()?.Description ?? item?.ToString() ?? "";
-            this.Value = (int)(item ?? 0);
-            this.IsChecked = true;
-        }
+    //    /// <summary>
+    //    /// Constructor for flag enum filter item
+    //    /// </summary>
+    //    public FilterItem(object item)
+    //    {
+    //        FieldInfo? fieldInfo = item.GetType().GetField(item.ToString()!);
+    //        this.Name = fieldInfo?.GetCustomAttribute<DescriptionAttribute>()?.Description ?? item?.ToString() ?? "";
+    //        this.Value = (int)(item ?? 0);
+    //        this.IsChecked = true;
+    //    }
 
-        /// <summary>
-        /// Constructor for text filter item
-        /// </summary>
-        public FilterItem(string item)
-        {
-            this.Name = item;
-            this.Value = item;
-            this.IsChecked = true;
-        }
+    //    /// <summary>
+    //    /// Constructor for text filter item
+    //    /// </summary>
+    //    public FilterItem(string item)
+    //    {
+    //        this.Name = item;
+    //        this.Value = item;
+    //        this.IsChecked = true;
+    //    }
 
-        /// <summary>
-        /// Constructor for IFilterItem filter item
-        /// </summary>
-        public FilterItem(IFilterItem item)
-        {
-            this.Name = item.Name;
-            this.Value = item.Value;
-            this.IsChecked = true;
-        }
+    //    /// <summary>
+    //    /// Constructor for IFilterItem filter item
+    //    /// </summary>
+    //    public FilterItem(IFilterItem item)
+    //    {
+    //        this.Name = item.Name;
+    //        this.Value = item.Value;
+    //        this.IsChecked = true;
+    //    }
 
-        /// <summary>
-        /// Occurs when a property value changes.
-        /// </summary>
-        public event PropertyChangedEventHandler? PropertyChanged;
+    //    /// <summary>
+    //    /// Occurs when a property value changes.
+    //    /// </summary>
+    //    public event PropertyChangedEventHandler? PropertyChanged;
 
-        /// <summary>
-        /// Gets a value indicating whether this filter item is the "All" filter.
-        /// </summary>
-        public bool IsAll { get; } = false;
+    //    /// <summary>
+    //    /// Gets a value indicating whether this filter item is the "All" filter.
+    //    /// </summary>
+    //    public bool IsAll { get; } = false;
 
-        /// <summary>
-        /// Gets the value associated with this filter item.
-        /// </summary>
-        public object? Value { get; }
+    //    /// <summary>
+    //    /// Gets the value associated with this filter item.
+    //    /// </summary>
+    //    public object? Value { get; }
 
-        /// <summary>
-        /// Gets or sets the display name of the filter item.
-        /// </summary>
-        public string Name { get; set; }
+    //    /// <summary>
+    //    /// Gets or sets the display name of the filter item.
+    //    /// </summary>
+    //    public string Name { get; set; }
 
-        private bool? isChecked;
+    //    private bool? isChecked;
 
-        /// <summary>
-        /// Gets or sets whether this filter item is checked (selected).
-        /// </summary>
-        public bool? IsChecked
-        {
-            get => isChecked;
-            set
-            {
-                if (isChecked != value)
-                {
-                    isChecked = value;
-                    this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsChecked)));
-                }
-            }
-        }
-    }
+    //    /// <summary>
+    //    /// Gets or sets whether this filter item is checked (selected).
+    //    /// </summary>
+    //    public bool? IsChecked
+    //    {
+    //        get => isChecked;
+    //        set
+    //        {
+    //            if (isChecked != value)
+    //            {
+    //                isChecked = value;
+    //                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsChecked)));
+    //            }
+    //        }
+    //    }
+    //}
 
     
 }

@@ -9,7 +9,7 @@ public abstract class DataGridAutoFilterColumn : DataGridFilterColumn
     /// <summary>
     /// Stores the list of filter items that are currently checked (selected) by the user.
     /// </summary>
-    protected List<FilterItem>? checkedFilters;
+    protected List<DataGridFilterItem>? checkedFilters;
 
     /// <summary>
     /// Handles the Checked event for filter items.
@@ -27,7 +27,12 @@ public abstract class DataGridAutoFilterColumn : DataGridFilterColumn
 
         if (this.DataGridOwner is DataGrid dataGrid)
         {
+            // TODO
             //dataGrid.RefreshFilter();
+
+            var behavior = Interaction.GetBehaviors(dataGrid).OfType<DataGridColumnFilterBehavior>().FirstOrDefault();
+
+            behavior?.RefreshFilter();
         }
     }
 

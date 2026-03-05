@@ -21,7 +21,7 @@ public class DataGridAutoFilterEnumColumn : DataGridAutoFilterColumn
                 throw new Exception($"{nameof(DataGridAutoFilterEnumColumn)} Binding object must be an Enum");
             }
 
-            this.filters = [.. Enum.GetValues(type).Cast<object>().Select(e => new FilterItem(e))];
+            this.filters = [.. Enum.GetValues(type).Cast<object>().Select(e => new DataGridFilterItem(e))];
             this.checkedFilters = filters?.Where(f => f.IsChecked == true).ToList();
             FillFilters();
         }

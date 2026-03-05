@@ -49,7 +49,7 @@ public partial class DataGridFilterTextColumn : DataGridFilterColumn
     /// <param name="filterEnum">The new enum type.</param>
     private void OnFilterEnumChanged(Type filterEnum)
     {
-        this.filters = [.. Enum.GetValues(filterEnum).Cast<object>().Select(e => new FilterItem(e))];
+        this.filters = [.. Enum.GetValues(filterEnum).Cast<object>().Select(e => new DataGridFilterItem(e))];
         FillFilters();
     }
 
@@ -77,7 +77,7 @@ public partial class DataGridFilterTextColumn : DataGridFilterColumn
     /// <param name="filterItems">The new collection of filter items.</param>
     private void OnFilterItemsChanged(IEnumerable<IFilterItem>? filterItems)
     {
-        this.filters = [.. filterItems!.Select(i => new FilterItem(i))];
+        this.filters = [.. filterItems!.Select(i => new DataGridFilterItem(i))];
         FillFilters();
     }
 
