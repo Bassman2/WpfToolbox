@@ -1,4 +1,6 @@
-﻿namespace WpfToolbox.Behaviors;
+﻿using System.Runtime.CompilerServices;
+
+namespace WpfToolbox.Behaviors;
 
 /// <summary>
 /// A behavior for WPF DataGrid that enables column-based filtering using DataGridAutoFilterColumn.
@@ -6,13 +8,24 @@
 /// </summary>
 public class DataGridColumnFilterBehavior : Behavior<DataGrid>
 {
+    private DependencyPropertyDescriptor? itemsSourcePropertyDescriptor;
+
+    private DataGrid2FilterColumn[] filterColumns = [];
+
     /// <summary>
     /// Attaches the behavior to the DataGrid, subscribing to column and item changes.
     /// </summary>
     protected override void OnAttached()
     {
+        Debug.WriteLine("DataGridColumnFilterBehavior.OnAttached");
+
+        // columns changed
         AssociatedObject.Columns.CollectionChanged += OnColumnsCollectionChanged;
         AssociatedObject.Items.CurrentChanged += OnItemsSourceChanged;
+
+        // ItemsSource property changed
+        itemsSourcePropertyDescriptor = DependencyPropertyDescriptor.FromProperty(ItemsControl.ItemsSourceProperty, typeof(DataGrid));
+        itemsSourcePropertyDescriptor.AddValueChanged(AssociatedObject, OnItemsSourceChanged);
     }
 
     /// <summary>
@@ -22,7 +35,11 @@ public class DataGridColumnFilterBehavior : Behavior<DataGrid>
     {
         AssociatedObject.Columns.CollectionChanged -= OnColumnsCollectionChanged;
         AssociatedObject.Items.CurrentChanged -= OnItemsSourceChanged;
+
+        itemsSourcePropertyDescriptor?.RemoveValueChanged(AssociatedObject, OnItemsSourceChanged);
     }
+
+    #region properties
 
     /// <summary>
     /// Dependency property for the total item count in the DataGrid.
@@ -56,13 +73,23 @@ public class DataGridColumnFilterBehavior : Behavior<DataGrid>
         set => SetValue(FilteredCountProperty, value);
     }
 
+    #endregion
+        
     /// <summary>
     /// Handles changes to the DataGrid's items source.
     /// Updates item counts, fills columns, and activates filtering.
     /// </summary>
     private void OnItemsSourceChanged(object? sender, EventArgs e)
     {
-        if (AssociatedObject.ItemsSource == null) return;
+        Debug.WriteLine("DataGridColumnFilterBehavior.OnItemsSourceChanged");
+
+        if (AssociatedObject.ItemsSource == null)
+        {
+            Count = 0;
+            FilteredCount = 0;
+            return;
+        }
+
         this.Count = AssociatedObject.ItemsSource.Cast<object>().Count();
 
         // Fill columns
@@ -71,7 +98,11 @@ public class DataGridColumnFilterBehavior : Behavior<DataGrid>
         // activate filtering
         if (AssociatedObject.ItemsSource is ICollectionView collectionView)
         {
-            collectionView.Filter = DoFilter;
+            filterColumns = [.. AssociatedObject.Columns.Where(c => c is DataGrid2FilterColumn).Cast<DataGrid2FilterColumn>()];
+            if (filterColumns.All(c => c.IsReady))
+            {
+                collectionView.Filter = DoFilter;
+            }
             FilteredCount = collectionView.Cast<object>().Count();
         }
     }
@@ -82,6 +113,8 @@ public class DataGridColumnFilterBehavior : Behavior<DataGrid>
     /// </summary>
     private void OnColumnsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
+        Debug.WriteLine("DataGridColumnFilterBehavior.OnColumnsCollectionChanged");
+
         if (e.Action == NotifyCollectionChangedAction.Add)
         {
             FillColumns(e.NewItems!.Cast<DataGridColumn>());
@@ -95,17 +128,19 @@ public class DataGridColumnFilterBehavior : Behavior<DataGrid>
     /// </summary>
     private void FillColumns(IEnumerable<DataGridColumn> columns)
     {
+        Debug.WriteLine($"DataGridColumnFilterBehavior.FillColumns {AssociatedObject.ItemsSource}");
+
         if (AssociatedObject.ItemsSource is null)
         {
             return;
         }
 
-        if (AssociatedObject.ItemsSource is not ICollectionView && columns.Any(c => c is DataGridAutoFilterColumn))
+        if (AssociatedObject.ItemsSource is not ICollectionView && columns.Any(c => c is DataGrid2FilterColumn))
         {
             throw new ArgumentException($"ItemsSource must be of type ICollectionView for filtering!");
         }
 
-        columns.OfType<DataGridAutoFilterColumn>().ToList().ForEach(c => c.FillColumn((ICollectionView)AssociatedObject.ItemsSource));
+        columns.OfType<DataGrid2FilterColumn>().ToList().ForEach(c => c.FillColumn((ICollectionView)AssociatedObject.ItemsSource));
     }
 
     /// <summary>
@@ -115,8 +150,11 @@ public class DataGridColumnFilterBehavior : Behavior<DataGrid>
     /// <returns>True if the item passes all filters; otherwise, false.</returns>
     private bool DoFilter(object obj)
     {
+        Debug.WriteLine($"DataGridColumnFilterBehavior.DoFilter {obj}");
+
         bool res = true;
-        foreach (DataGridAutoFilterColumn column in AssociatedObject.Columns.Where(c => c is DataGridAutoFilterColumn).Cast<DataGridAutoFilterColumn>())
+        //var columns = AssociatedObject.Columns.Where(c => c is DataGrid2FilterColumn).Cast<DataGrid2FilterColumn>().ToList();
+        foreach (DataGrid2FilterColumn column in filterColumns)
         {
             res &= column.Filter(obj);
         }
@@ -129,6 +167,8 @@ public class DataGridColumnFilterBehavior : Behavior<DataGrid>
     /// </summary>
     public void RefreshFilter()
     {
+        Debug.WriteLine("DataGridColumnFilterBehavior.RefreshFilter");
+
         if (AssociatedObject.ItemsSource is ICollectionView collectionView)
         {
             collectionView.Refresh();

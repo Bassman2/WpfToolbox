@@ -23,9 +23,9 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
-                <DataGridAutoFilterEnumColumn Header="Enum A" Binding="{Binding Enum1}" />
+                <!--<DataGridAutoFilterEnumColumn Header="Enum A" Binding="{Binding Enum1}" />
                 <DataGridAutoFilterEnumColumn Header="Enum B" Binding="{Binding Enum2, Converter={StaticResource descriptionConverter}}"/>
-                <DataGridAutoFilterTextColumn Header="Group" Binding="{Binding Group}"/>
+                <DataGridAutoFilterTextColumn Header="Group" Binding="{Binding Group}"/>-->
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

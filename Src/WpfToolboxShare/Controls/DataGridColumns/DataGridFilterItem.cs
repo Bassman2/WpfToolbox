@@ -49,6 +49,8 @@ public class DataGridFilterItem : INotifyPropertyChanged
         this.IsChecked = true;
     }
 
+    public readonly static DataGridFilterItem All = new();
+
     /// <summary>
     /// Occurs when a property value changes.
     /// </summary>
