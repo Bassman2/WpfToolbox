@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGridColumns\DataGrid2FilterColumn.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGridColumns\DataGrid2FilterEnumColumn.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGridColumns\DataGrid2FilterTextColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\EnumToVisibilityCollapsedConverter.cs" />
     <Compile Include="..\WpfToolboxShare\Controls\DataGridColumns\DataGridFilterItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\FilteredComboBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\HideableGridSplitter.cs" />
