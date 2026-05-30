@@ -17,8 +17,23 @@ public class EnumToVisibilityCollapsedConverter : IValueConverter
     /// <returns>Visibility.Visible if value equals parameter, otherwise Visibility.Collapsed.</returns>
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        var res = parameter.Equals(value) ? Visibility.Visible : Visibility.Collapsed;
-        return res;
+        if (parameter.GetType().IsEnum)
+        {
+            var res = parameter.Equals(value) ? Visibility.Visible : Visibility.Collapsed;
+            return res;
+        }
+        if (parameter is string parameterString)
+        {
+            var parameterValues = parameterString.Split('|');
+            foreach (var paramValue in parameterValues)
+            {
+                if (Enum.TryParse(value.GetType(), paramValue, out object? enumValue) && enumValue.Equals(value))
+                {
+                    return Visibility.Visible;
+                }
+            }
+        } 
+        throw new ArgumentException("Parameter must be an enum value.");
     }
     
 
