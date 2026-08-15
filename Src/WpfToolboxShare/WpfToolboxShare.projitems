@@ -11,12 +11,20 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\DataGridColumnReorderBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ListBoxDoubleClickItemBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ListBoxMultipleSelectionBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ListBoxScrollIntoViewBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\RibbonPersistenceBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\StoreBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AutoGrayableImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Browser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckComboBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckListBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGridColumns\DataGrid2FilterColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGridColumns\DataGrid2FilterEnumColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGridColumns\DataGrid2FilterTextColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\EnumToVisibilityCollapsedConverter.cs" />
+    <Compile Include="..\WpfToolboxShare\Controls\DataGridColumns\DataGridFilterItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\FilteredComboBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\HideableGridSplitter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Primitives\ValueSliderControl.cs" />

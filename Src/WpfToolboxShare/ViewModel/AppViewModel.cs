@@ -399,26 +399,9 @@ public abstract partial class AppViewModel : ObservableValidator
     #region error message box
 
     /// <summary>
-    /// Executes an action and shows an error message box if an exception occurs.
-    /// </summary>
-    public static void HandleErrorMessage(Action action)
-    {
-        try
-        {
-            action();
-        }
-        catch (Exception ex)
-        {
-            Exception e = ex is AggregateException && ex.InnerException is not null ? ex.InnerException : ex;
-            Debug.WriteLine(e);
-            ApplicationDispatcher.Invoke(() => MessageBox.Show(Application.Current.MainWindow, e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error));
-        }
-    }
-
-    /// <summary>
     /// Executes an action and shows an error message box with a custom caption if an exception occurs.
     /// </summary>
-    public static void HandleErrorMessage(Action action, string caption)
+    public static void HandleErrorMessage(Action action, string caption = "Error")
     {
         try
         {
@@ -431,5 +414,20 @@ public abstract partial class AppViewModel : ObservableValidator
             ApplicationDispatcher.Invoke(() => MessageBox.Show(Application.Current.MainWindow, e.Message, caption, MessageBoxButton.OK, MessageBoxImage.Error));
         }
     }
+
+    public static async Task HandleErrorMessageAsync(Func<Task> func, string caption = "Error")
+    {
+        try
+        {
+            await func();
+        }
+        catch (Exception ex)
+        {
+            Exception e = ex is AggregateException && ex.InnerException is not null ? ex.InnerException : ex;
+            Debug.WriteLine(e);
+            ApplicationDispatcher.Invoke(() => MessageBox.Show(Application.Current.MainWindow, e.Message, caption, MessageBoxButton.OK, MessageBoxImage.Error));
+        }
+    }
+
     #endregion
 }

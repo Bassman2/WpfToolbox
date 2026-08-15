@@ -1,6 +1,4 @@
-﻿using System.Configuration;
-
-namespace WpfToolbox.Behaviors;
+﻿namespace WpfToolbox.Behaviors;
 
 /// <summary>
 /// Represents an abstract base behavior that can be attached to a <see cref="DependencyObject"/> and provides store-related functionality.

@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>WpfToolbox</id>
-    <version>1.13.0</version>
+    <version>1.15.0</version>
     <title>WPF Toolbox</title>
     <authors>Ralf Beckers</authors>
     <owners>Ralf Beckers</owners>
@@ -12,7 +12,7 @@
     <projectUrl>https://github.com/Bassman2/WpfToolbox</projectUrl>
     <description>WPF Toolbox</description>
     <releaseNotes>Creation</releaseNotes>
-    <copyright>Copyright 2025 (c) by Ralf Beckers</copyright>
+    <copyright>Copyright 2025 - 2026 (c) by Ralf Beckers</copyright>
     <repository type="git" url="https://github.com/Bassman2/WpfToolbox"/>
     <tags>WPF Toolbox</tags>
     <readme>docs\README.md</readme>

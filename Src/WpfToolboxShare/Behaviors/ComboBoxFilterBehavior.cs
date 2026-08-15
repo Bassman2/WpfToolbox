@@ -45,7 +45,7 @@ public class ComboBoxFilterBehavior : Behavior<ComboBox>
     /// The collection of filter items to display in the ComboBox.
     /// </summary>
     public static readonly DependencyProperty ItemsSourceProperty =
-        DependencyProperty.Register("ItemsSource", typeof(IEnumerable<FilterItem>), typeof(ComboBoxFilterBehavior),
+        DependencyProperty.Register("ItemsSource", typeof(IEnumerable<ComboBoxFilterItem>), typeof(ComboBoxFilterBehavior),
         new PropertyMetadata(null, (d, e) => ((ComboBoxFilterBehavior)d).OnItemsSource(e.NewValue)));
 
     /// <summary>
@@ -70,9 +70,9 @@ public class ComboBoxFilterBehavior : Behavior<ComboBox>
     /// <summary>
     /// Gets or sets the collection of filter items.
     /// </summary>
-    public IEnumerable<FilterItem>? ItemsSource
+    public IEnumerable<ComboBoxFilterItem>? ItemsSource
     {
-        get { return (IEnumerable<FilterItem>?)GetValue(ItemsSourceProperty); }
+        get { return (IEnumerable<ComboBoxFilterItem>?)GetValue(ItemsSourceProperty); }
         set { SetValue(ItemsSourceProperty, value); }
     }
 
@@ -113,12 +113,12 @@ public class ComboBoxFilterBehavior : Behavior<ComboBox>
         
         if (EnumType != null)
         {
-            this.filters = Enum.GetValues(EnumType).Cast<object>().Select(e => new FilterViewModel(this, e)).ToList();
+            this.filters = [.. Enum.GetValues(EnumType).Cast<object>().Select(e => new FilterViewModel(this, e))];
             AssociatedObject.ItemsSource = filters.Prepend(new AllFilterViewModel(this.filters));
         }
         else if (ItemsSource != null)
         {
-            this.filters = ItemsSource.Select(i => new FilterViewModel(this, i)).ToList();
+            this.filters = [.. ItemsSource.Select(i => new FilterViewModel(this, i))];
             AssociatedObject.ItemsSource = filters.Prepend(new AllFilterViewModel(this.filters));
         }
     }
@@ -173,11 +173,11 @@ public partial class FilterViewModel : ObservableObject
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FilterViewModel"/> class using a <see cref="FilterItem"/>.
+    /// Initializes a new instance of the <see cref="FilterViewModel"/> class using a <see cref="ComboBoxFilterItem"/>.
     /// </summary>
     /// <param name="behavior">The parent <see cref="ComboBoxFilterBehavior"/> instance.</param>
-    /// <param name="item">The <see cref="FilterItem"/> to represent as a filter item.</param>
-    public FilterViewModel(ComboBoxFilterBehavior behavior, FilterItem item)
+    /// <param name="item">The <see cref="ComboBoxFilterItem"/> to represent as a filter item.</param>
+    public FilterViewModel(ComboBoxFilterBehavior behavior, ComboBoxFilterItem item)
     {
         this.behavior = behavior;
         Name = item.Name;
@@ -232,7 +232,7 @@ public partial class FilterViewModel : ObservableObject
 /// <summary>
 /// Represents a filter item for use in ComboBoxFilterBehavior.
 /// </summary>
-public class FilterItem
+public class ComboBoxFilterItem
 {
     /// <summary>
     /// Gets or sets the name of the filter item.
@@ -247,7 +247,7 @@ public class FilterItem
     /// <summary>
     /// Assigns unique flag values to each filter item in the collection.
     /// </summary>
-    public static void DefineFlags(IEnumerable<FilterItem>? items)
+    public static void DefineFlags(IEnumerable<ComboBoxFilterItem>? items)
     {
         if (items == null) return;
 
@@ -272,7 +272,7 @@ public partial class AllFilterViewModel : FilterViewModel
     /// <param name="filters">The collection of <see cref="FilterViewModel"/> items to manage with the "All" filter.</param>
     public AllFilterViewModel(IEnumerable<FilterViewModel> filters)
     {
-        this.filters = filters.ToList();
+        this.filters = [.. filters];
         this.filters.ForEach(f => f.AllFilter = this);
         this.Name = "All";
         IsChecked = true;
